@@ -1,0 +1,114 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  authorId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ContactSubmission {
+  id          String   @id @default(cuid())
+  name        String
+  company     String?
+  email       String
+  phone       String?
+  services    String?  // JSON string
+  budget      String?
+  timeline    String?
+  description String?
+  source      String?
+  nda         Boolean  @default(false)
+  privacy     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String
+  content     String
+  category    String
+  author      String
+  authorRole  String
+  readTime    Int
+  featured    Boolean  @default(false)
+  published   Boolean  @default(false)
+  tags        String   // JSON string of tag array
+  coverImage  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model JobListing {
+  id            String   @id @default(cuid())
+  title         String
+  slug          String   @unique
+  department    String
+  location      String
+  type          String   // Full-time, Part-time, Contract, Internship
+  experience    String   // e.g. "2-4 years", "5+ years"
+  salary        String?  // e.g. "₹8L – ₹15L PA"
+  description   String   // Full markdown description
+  requirements  String   // JSON string of requirement array
+  benefits      String   // JSON string of benefits array
+  skills        String   // JSON string of skills array
+  featured      Boolean  @default(false)
+  published     Boolean  @default(true)
+  postedAt      DateTime @default(now())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model JobApplication {
+  id            String   @id @default(cuid())
+  jobId         String
+  jobTitle      String
+  fullName      String
+  email         String
+  phone         String?
+  resumeUrl     String?  // Link to resume/CV
+  portfolioUrl  String?  // Link to portfolio
+  linkedinUrl   String?  // LinkedIn profile
+  coverLetter   String?  // Cover letter text
+  experience    String?  // Years of experience
+  currentCompany String? // Current company
+  noticePeriod  String?  // Notice period
+  expectedSalary String? // Expected salary
+  source        String?  // How they found us
+  customRole    Boolean  @default(false) // True if applying for a role not listed
+  customRoleTitle String? // The custom role they're applying for
+  status        String   @default("new") // new, reviewing, interview, offered, rejected
+  createdAt     DateTime @default(now())
+}
