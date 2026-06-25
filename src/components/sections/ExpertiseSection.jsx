@@ -7,7 +7,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SERVICES } from "@/lib/constants";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { fadeUp, staggerContainer } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
@@ -24,10 +23,13 @@ export function ExpertiseSection() {
   const cardRefs = useRef([]);
   const progressFillRef = useRef(null);
 
-  /* ─── GSAP ScrollTrigger setup ─── */
+  /* ─── GSAP ScrollTrigger setup (runs on ALL viewports) ─── */
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.innerWidth < 1024) return;
+
+    // Keep pinning stable on mobile (ignore viewport changes from the address
+    // bar hiding/showing, which would otherwise re-trigger refreshes/jumps).
+    ScrollTrigger.config({ ignoreMobileResize: true });
 
     const section = sectionRef.current;
     const container = cardsContainerRef.current;
@@ -36,86 +38,80 @@ export function ExpertiseSection() {
     const cards = cardRefs.current.filter(Boolean);
     if (cards.length === 0) return;
 
-    /* Kill ALL existing ScrollTriggers first (clean slate) */
-    ScrollTrigger.getAll().forEach((t) => t.kill());
+    const ctx = gsap.context(() => {
+      /* Kill ALL existing ScrollTriggers first (clean slate) */
+      ScrollTrigger.getAll().forEach((t) => t.kill());
 
-    /* ─── Set initial card states ─── */
-    cards.forEach((card, i) => {
-      gsap.set(card, {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        zIndex: cards.length + 10 - i, // Card 0 highest z
-        yPercent: i === 0 ? 0 : 100, // First card visible, rest hidden below
-        scale: 1,
-        rotation: 0,
-        opacity: 1,
-        x: 0,
-        transformOrigin: "center center",
+      /* ─── Set initial card states ─── */
+      cards.forEach((card, i) => {
+        gsap.set(card, {
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: cards.length + 10 - i, // Card 0 highest z
+          yPercent: i === 0 ? 0 : 100, // First card visible, rest hidden below
+          scale: 1,
+          rotation: 0,
+          opacity: 1,
+          x: 0,
+          transformOrigin: "center center",
+        });
       });
-    });
 
-    /* ─── Create individual ScrollTrigger for each card transition ─── */
-    /* Each transition: card[i] animates OUT, card[i+1] animates IN */
+      /* ─── Per-card transition: card[i] animates OUT, card[i+1] animates IN ─── */
+      for (let i = 0; i < cards.length - 1; i++) {
+        const currentCard = cards[i];
+        const nextCard = cards[i + 1];
 
-    for (let i = 0; i < cards.length - 1; i++) {
-      const currentCard = cards[i];
-      const nextCard = cards[i + 1];
+        ScrollTrigger.create({
+          trigger: section,
+          start: `top+=${i * (100 / (cards.length - 1))}% top`,
+          end: `top+=${(i + 1) * (100 / (cards.length - 1))}% top`,
+          pin: false,
+          scrub: 0.5,
+          onUpdate: (self) => {
+            const progress = self.progress;
 
+            /* Current card animates OUT */
+            gsap.to(currentCard, {
+              rotation: -35 * progress,
+              scale: 1 - 0.7 * progress, // 1 → 0.3
+              opacity: 1 - progress, // 1 → 0
+              yPercent: -10 * progress, // slight upward
+              x: -60 * progress, // shift left
+              duration: 0,
+              overwrite: "auto",
+            });
+
+            /* Next card animates IN */
+            gsap.to(nextCard, {
+              yPercent: 100 - 100 * progress, // 100% → 0%
+              duration: 0,
+              overwrite: "auto",
+            });
+
+            /* Update active index + progress bar */
+            const idx = progress > 1.5 ? i + 1 : i;
+            setActiveIndex(idx);
+            if (progressFillRef.current) {
+              progressFillRef.current.style.width = `${((idx + 1) / cards.length) * 100}%`;
+            }
+          },
+        });
+      }
+
+      /* ─── Pin the section ─── */
       ScrollTrigger.create({
         trigger: section,
-        start: `top+=${i * (100 / (cards.length - 1))}% top`,
-        end: `top+=${(i + 1) * (100 / (cards.length - 1))}% top`,
-        pin: false,
-        scrub: 0.5,
-        onUpdate: (self) => {
-          const progress = self.progress;
-
-          /* Current card animates OUT */
-          gsap.to(currentCard, {
-            rotation: -35 * progress,
-            scale: 1 - 0.7 * progress, // 1 → 0.3
-            opacity: 1 - progress, // 1 → 0
-            yPercent: -10 * progress, // slight upward
-            x: -60 * progress, // shift left
-            duration: 0,
-            overwrite: "auto",
-          });
-
-          /* Next card animates IN */
-          gsap.to(nextCard, {
-            yPercent: 100 - 100 * progress, // 100% → 0%
-            duration: 0,
-            overwrite: "auto",
-          });
-
-          /* Update active index */
-          if (progress > 1.5) {
-            setActiveIndex(i + 1);
-            if (progressFillRef.current) {
-              progressFillRef.current.style.width = `${((i + 2) / cards.length) * 100}%`;
-            }
-          } else {
-            setActiveIndex(i);
-            if (progressFillRef.current) {
-              progressFillRef.current.style.width = `${((i + 1) / cards.length) * 100}%`;
-            }
-          }
-        },
+        start: "top top",
+        end: `+=${(cards.length - 1) * 100}vh`,
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
       });
-    }
-
-    /* ─── Pin the section ─── */
-    ScrollTrigger.create({
-      trigger: section,
-      start: "top top",
-      end: `+=${(cards.length - 1) * 100}vh`,
-      pin: true,
-      pinSpacing: true,
-      anticipatePin: 1,
-    });
+    }, section);
 
     /* Refresh after a brief delay to recalculate positions */
     const refreshTimeout = setTimeout(() => {
@@ -124,16 +120,15 @@ export function ExpertiseSection() {
 
     return () => {
       clearTimeout(refreshTimeout);
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      ctx.revert();
     };
   }, []);
 
-  /* ─── Click to navigate ─── */
+  /* ─── Click to navigate (desktop nav) ─── */
   const scrollToCard = useCallback((index) => {
     const section = sectionRef.current;
     if (!section) return;
 
-    /* Get the pin trigger */
     const allTriggers = ScrollTrigger.getAll();
     const pinTrigger = allTriggers.find((t) => t.pin === section);
     if (!pinTrigger) return;
@@ -149,7 +144,7 @@ export function ExpertiseSection() {
     <section
       id="services"
       ref={sectionRef}
-      className="relative mesh-gradient-1 py-20 md:py-28 lg:py-32"
+      className="relative mesh-gradient-1 py-16 md:py-20 lg:py-28"
     >
       <div className="absolute top-0 left-0 right-0 h-px bg-black/[0.06]" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-black/[0.06]" />
@@ -157,54 +152,22 @@ export function ExpertiseSection() {
       <div className="absolute bottom-40 right-20 w-96 h-96 bg-albos-accent/[0.02] rounded-full blur-[150px] pointer-events-none" />
 
       <div className="mx-auto max-w-[var(--container-max)] px-6 md:px-12 lg:px-20">
-        <ScrollReveal direction="up" className="mb-12 lg:mb-16">
-          <SectionLabel label="Our Expertise" />
-        </ScrollReveal>
-
-        {/* ─── Mobile: simple card list ─── */}
-        <div className="lg:hidden">
-          <div className="sticky top-16 z-30 -mx-6 px-6 py-3 bg-[#FAFAFA]/95 backdrop-blur-xl border-b border-black/[0.06] mb-6">
-            <div className="flex gap-2 overflow-x-auto scrollbar-hide">
-              {SERVICES.map((service, i) => (
-                <button
-                  key={service.id}
-                  onClick={() => {
-                    const el = document.getElementById(`mobile-card-${i}`);
-                    el?.scrollIntoView({ behavior: "smooth", block: "center" });
-                  }}
-                  className={cn(
-                    "shrink-0 rounded-full px-4 py-2 text-xs font-semibold font-[family-name:var(--font-inter)] transition-all duration-300 whitespace-nowrap",
-                    i === activeIndex
-                      ? "bg-albos-accent text-albos-dark"
-                      : "border border-black/[0.12] text-albos-text/70 hover:border-albos-accent/40",
-                  )}
-                >
-                  <span className="text-albos-accent/60 mr-1.5">
-                    {service.id}
-                  </span>
-                  {service.title}
-                </button>
-              ))}
-            </div>
-          </div>
-          {SERVICES.map((service, i) => (
-            <div
-              key={service.slug}
-              id={`mobile-card-${i}`}
-              className="mb-4 rounded-2xl border border-black/[0.08] bg-white overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.06)]"
-            >
-              <ServiceCardContent
-                service={service}
-                isActive={i === activeIndex}
-              />
-            </div>
-          ))}
+        {/* Mobile heading — on desktop this lives inside the left nav column */}
+        <div className="lg:hidden mb-8">
+          <SectionLabel label="Our Expertise" className="mb-4" />
+          <h2 className="font-[family-name:var(--font-plus-jakarta)] text-2xl font-bold text-albos-text leading-tight">
+            What We <span className="text-gradient">Build</span>
+          </h2>
+          <p className="mt-3 text-albos-muted text-sm leading-relaxed font-[family-name:var(--font-inter)]">
+            Six core disciplines. One integrated team. End-to-end delivery from
+            strategy to scale.
+          </p>
         </div>
 
-        {/* ─── Desktop: GSAP ScrollTrigger pinned layout ─── */}
-        <div className="hidden lg:flex lg:gap-16">
-          {/* ─── LEFT: Sticky Navigation ─── */}
-          <div className="lg:w-[30%] shrink-0">
+        {/* ─── Unified GSAP stacked-card layout (desktop + mobile) ─── */}
+        <div className="flex flex-col lg:flex-row lg:gap-16">
+          {/* ─── LEFT: Sticky Navigation (desktop only) ─── */}
+          <div className="hidden lg:block lg:w-[30%] shrink-0">
             <div className="sticky top-28">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -213,6 +176,7 @@ export function ExpertiseSection() {
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 className="mb-10"
               >
+                <SectionLabel label="Our Expertise" className="mb-5" />
                 <h2 className="font-[family-name:var(--font-plus-jakarta)] text-3xl md:text-4xl font-bold text-albos-text leading-tight">
                   What We
                   <br />
@@ -359,12 +323,11 @@ export function ExpertiseSection() {
             </div>
           </div>
 
-          {/* ─── RIGHT: Stacked Cards Container ─── */}
-          <div className="lg:w-[70%] relative">
+          {/* ─── RIGHT: Stacked Cards Container (all widths) ─── */}
+          <div className="w-full lg:w-[70%] relative overflow-hidden">
             <div
               ref={cardsContainerRef}
-              className="relative w-full"
-              style={{ height: "75vh" }}
+              className="relative w-full h-[62vh] lg:h-[75vh]"
             >
               {SERVICES.map((service, i) => (
                 <div
@@ -372,8 +335,7 @@ export function ExpertiseSection() {
                   ref={(el) => {
                     cardRefs.current[i] = el;
                   }}
-                  className="w-full rounded-2xl border border-black/[0.08] bg-white overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.08)]"
-                  style={{ height: "75vh" }}
+                  className="w-full rounded-2xl border border-black/[0.08] bg-white overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.08)] h-[62vh] lg:h-[75vh]"
                 >
                   <ServiceCardContent
                     service={service}
@@ -382,6 +344,12 @@ export function ExpertiseSection() {
                 </div>
               ))}
             </div>
+
+            {/* Mobile scroll hint */}
+            <p className="lg:hidden mt-4 text-center text-[11px] uppercase tracking-[0.15em] text-albos-muted font-[family-name:var(--font-inter)]">
+              Scroll to explore · {String(activeIndex + 1).padStart(2, "0")} /{" "}
+              {String(SERVICES.length).padStart(2, "0")}
+            </p>
           </div>
         </div>
       </div>

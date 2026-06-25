@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -65,6 +65,21 @@ const CATEGORY_COLORS = {
     text: "text-teal-600",
     border: "border-teal-500/20",
   },
+  Mobile: {
+    bg: "bg-indigo-500/10",
+    text: "text-indigo-600",
+    border: "border-indigo-500/20",
+  },
+  Healthcare: {
+    bg: "bg-rose-500/10",
+    text: "text-rose-600",
+    border: "border-rose-500/20",
+  },
+  "Data Engineering": {
+    bg: "bg-violet-500/10",
+    text: "text-violet-600",
+    border: "border-violet-500/20",
+  },
 };
 
 const DEFAULT_CATEGORY_COLOR = {
@@ -74,17 +89,37 @@ const DEFAULT_CATEGORY_COLOR = {
 };
 
 /* ─── Categories ─── */
-const CATEGORIES = [
-  "All Posts",
+const CATEGORY_ORDER = [
   "Engineering",
   "AI/ML",
-  "Design",
   "Cloud",
-  "Business",
   "DevOps",
+  "Mobile",
+  "Data Engineering",
+  "Healthcare",
   "Security",
+  "Business",
+  "Design",
   "Case Studies",
 ];
+
+function getCategoryOptions(posts) {
+  const categories = [
+    ...new Set(posts.map((post) => post.category).filter(Boolean)),
+  ];
+
+  categories.sort((a, b) => {
+    const aIndex = CATEGORY_ORDER.indexOf(a);
+    const bIndex = CATEGORY_ORDER.indexOf(b);
+
+    if (aIndex === -1 && bIndex === -1) return a.localeCompare(b);
+    if (aIndex === -1) return 1;
+    if (bIndex === -1) return -1;
+    return aIndex - bIndex;
+  });
+
+  return ["All Posts", ...categories];
+}
 
 /* ─── Date Formatting ─── */
 function formatDate(dateStr) {
@@ -503,6 +538,7 @@ export function BlogPageClient({ posts }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [hasInteracted, setHasInteracted] = useState(false);
   const POSTS_PER_PAGE = 9;
+  const categories = useMemo(() => getCategoryOptions(posts), [posts]);
 
   const handleCategoryChange = useCallback((category) => {
     setActiveCategory(category);
@@ -605,7 +641,7 @@ export function BlogPageClient({ posts }) {
       <section className="py-8 md:py-10 bg-[#FAFAFA]">
         <div className="mx-auto max-w-[var(--container-max)] px-6 md:px-12 lg:px-20">
           <div className="flex flex-wrap items-center gap-2 md:gap-3">
-            {CATEGORIES.map((cat) => (
+            {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => handleCategoryChange(cat)}

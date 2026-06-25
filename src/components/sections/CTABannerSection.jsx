@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export function CTABannerSection({ onNavigate }) {
   return (
-    <section className="relative bg-gradient-to-br from-[#FAFAFA] via-[#FFFFFF] to-[#FAFAFA] py-24 md:py-32 lg:py-40 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-[#FAFAFA] via-[#FFFFFF] to-[#FAFAFA] py-16 md:py-20 lg:py-24 overflow-hidden">
       {/* Noise texture overlay */}
       <div className="noise-overlay absolute inset-0" />
 
@@ -57,7 +57,7 @@ export function CTABannerSection({ onNavigate }) {
           {/* Large heading */}
           <h2 className="font-[family-name:var(--font-plus-jakarta)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#18181B] leading-[1.05] max-w-4xl mx-auto">
             Ready to Build Something{" "}
-            <span className="text-[#F97316]">Extraordinary</span>?
+            <span className="text-[#F97316]">Extraordinary ?</span>
           </h2>
 
           <p className="mt-6 text-[#A1A1AA] text-base md:text-lg max-w-xl mx-auto font-[family-name:var(--font-inter)] leading-relaxed">

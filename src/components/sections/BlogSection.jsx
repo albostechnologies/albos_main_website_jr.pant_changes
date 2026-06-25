@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence, useInView } from "framer-motion";
@@ -25,43 +25,52 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { cn } from "@/lib/utils";
 
 /* ─── Constants ─── */
-const CATEGORIES = [
-  "All",
+const CATEGORY_ORDER = [
   "Engineering",
   "AI/ML",
-  "Design",
   "Cloud",
-  "Business",
   "DevOps",
+  "Mobile",
+  "Data Engineering",
+  "Healthcare",
   "Security",
+  "Business",
+  "Design",
   "Case Studies",
 ];
 
-const POPULAR_TAGS = [
-  { label: "TypeScript", count: 12 },
-  { label: "React", count: 9 },
-  { label: "AI", count: 15 },
-  { label: "Kubernetes", count: 7 },
-  { label: "Cloud", count: 8 },
-  { label: "Microservices", count: 6 },
-  { label: "Design Systems", count: 4 },
-  { label: "Mobile", count: 5 },
-  { label: "DevOps", count: 10 },
-  { label: "Python", count: 11 },
-];
+function getCategoryOptions(posts) {
+  const categories = [
+    ...new Set(posts.map((post) => post.category).filter(Boolean)),
+  ];
 
-const TAG_CATEGORY_MAP = {
-  TypeScript: ["Engineering"],
-  React: ["Engineering"],
-  AI: ["AI/ML"],
-  Kubernetes: ["Cloud"],
-  Cloud: ["Cloud"],
-  Microservices: ["Engineering"],
-  "Design Systems": ["Design"],
-  Mobile: ["Business"],
-  DevOps: ["DevOps"],
-  Python: ["AI/ML", "Engineering"],
-};
+  categories.sort((a, b) => {
+    const aIndex = CATEGORY_ORDER.indexOf(a);
+    const bIndex = CATEGORY_ORDER.indexOf(b);
+
+    if (aIndex === -1 && bIndex === -1) return a.localeCompare(b);
+    if (aIndex === -1) return 1;
+    if (bIndex === -1) return -1;
+    return aIndex - bIndex;
+  });
+
+  return ["All", ...categories];
+}
+
+function getPopularTags(posts) {
+  const counts = new Map();
+
+  posts.forEach((post) => {
+    (post.tags || []).forEach((tag) => {
+      counts.set(tag, (counts.get(tag) || 0) + 1);
+    });
+  });
+
+  return [...counts.entries()]
+    .map(([label, count]) => ({ label, count }))
+    .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label))
+    .slice(0, 10);
+}
 
 const CATEGORY_COLORS = {
   Engineering: {
@@ -103,6 +112,21 @@ const CATEGORY_COLORS = {
     bg: "bg-teal-500/10",
     text: "text-teal-600",
     border: "border-teal-500/20",
+  },
+  Mobile: {
+    bg: "bg-indigo-500/10",
+    text: "text-indigo-600",
+    border: "border-indigo-500/20",
+  },
+  Healthcare: {
+    bg: "bg-rose-500/10",
+    text: "text-rose-600",
+    border: "border-rose-500/20",
+  },
+  "Data Engineering": {
+    bg: "bg-violet-500/10",
+    text: "text-violet-600",
+    border: "border-violet-500/20",
   },
 };
 
@@ -561,9 +585,11 @@ function AuthorSpotlight() {
 }
 
 /* ─── Popular Tags Sidebar ─── */
-function PopularTagsSidebar({ activeTag, onTagClick }) {
+function PopularTagsSidebar({ tags, activeTag, onTagClick }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-40px" });
+
+  if (tags.length === 0) return null;
 
   return (
     <motion.div
@@ -577,7 +603,7 @@ function PopularTagsSidebar({ activeTag, onTagClick }) {
         Popular Tags
       </p>
       <div className="flex flex-col gap-1.5">
-        {POPULAR_TAGS.map((tag, i) => (
+        {tags.map((tag, i) => (
           <motion.button
             key={tag.label}
             custom={i}
@@ -842,6 +868,8 @@ export function BlogSection() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [activeTag, setActiveTag] = useState(null);
   const { readingList, toggleBookmark } = useReadingList();
+  const categories = useMemo(() => getCategoryOptions(posts), [posts]);
+  const popularTags = useMemo(() => getPopularTags(posts), [posts]);
 
   // Fetch blog posts from API
   useEffect(() => {
@@ -872,12 +900,7 @@ export function BlogSection() {
     if (activeCategory !== "All" && post.category !== activeCategory)
       return false;
     if (activeTag) {
-      const mappedCategories = TAG_CATEGORY_MAP[activeTag] || [];
-      if (
-        mappedCategories.length > 0 &&
-        !mappedCategories.includes(post.category)
-      )
-        return false;
+      return (post.tags || []).includes(activeTag);
     }
     return true;
   });
@@ -910,7 +933,7 @@ export function BlogSection() {
         <div className="mx-auto max-w-[var(--container-max)] px-6 md:px-12 lg:px-20">
           <ScrollReveal direction="up" delay={0.1}>
             <div className="flex flex-wrap items-center gap-2 md:gap-3">
-              {CATEGORIES.map((cat) => (
+              {categories.map((cat) => (
                 <motion.button
                   key={cat}
                   onClick={() => {
@@ -1049,6 +1072,7 @@ export function BlogSection() {
                 {/* Sidebar */}
                 <div className="w-full lg:w-[280px] xl:w-[300px] shrink-0 space-y-6">
                   <PopularTagsSidebar
+                    tags={popularTags}
                     activeTag={activeTag}
                     onTagClick={handleTagClick}
                   />

@@ -2,26 +2,21 @@ import { CareersPageClient } from "@/components/careers/CareersPageClient";
 import { getPublishedJobListings } from "@/data/job-listings";
 
 export const metadata = {
-  title: "Careers — Albos Technologies Pvt Ltd | Join Our Engineering Team",
+  title: "Careers at Albos Technologies | Join Our Growing Team",
   description:
-    "Explore open positions at Albos Technologies Pvt Ltd. We are hiring engineers, designers, DevOps specialists, and more. Build the future of enterprise software with a team of 250+ professionals in Pune, India.",
+    "Explore career opportunities at Albos Technologies and become part of a team creating innovative software, mobile and digital solutions.",
   keywords: [
+    "careers at albos technologies",
     "software engineering jobs",
-    "React developer jobs Pune",
-    "Flutter developer careers",
-    "Node.js backend engineer",
-    "DevOps engineer India",
-    "AI ML engineer positions",
-    "UI UX designer jobs",
-    "Albos Technologies Pvt Ltd careers",
     "tech jobs Pune",
-    "startup hiring India",
+    "developer careers India",
+    "Albos Technologies hiring",
   ],
   authors: [{ name: "Albos Technologies Pvt Ltd" }],
   openGraph: {
-    title: "Careers — Albos Technologies Pvt Ltd | Join Our Engineering Team",
+    title: "Careers at Albos Technologies | Join Our Growing Team",
     description:
-      "Explore open positions at Albos Technologies Pvt Ltd. Build the future of enterprise software with 250+ engineers in Pune, India.",
+      "Explore career opportunities at Albos Technologies and become part of a team creating innovative software, mobile and digital solutions.",
     type: "website",
     url: "https://albostechnologies.com/careers",
     siteName: "Albos Technologies Pvt Ltd",
@@ -29,9 +24,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Careers — Albos Technologies Pvt Ltd | Join Our Engineering Team",
+    title: "Careers at Albos Technologies | Join Our Growing Team",
     description:
-      "Explore open positions at Albos Technologies Pvt Ltd. Build the future of enterprise software with 250+ engineers in Pune, India.",
+      "Explore career opportunities at Albos Technologies and become part of a team creating innovative software, mobile and digital solutions.",
   },
   robots: "index, follow",
   alternates: {

@@ -19,6 +19,8 @@ node_modules
 
 # production
 /build
+# build artifact produced by `npm run package` / `npm run zip`
+/albos-website-build.zip
 
 # misc
 .DS_Store

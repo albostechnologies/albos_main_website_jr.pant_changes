@@ -361,7 +361,9 @@ export const CONTACT_INFO = {
     { city: "Pune", address: "Kunal Plaza, Pune MH 411019", teamSize: 250 },
   ],
   social: {
-    linkedin: "https://www.linkedin.com/company/albos-technologies",
+    linkedin: "https://www.linkedin.com/in/albos-technologies-4b7717412",
+    youtube: "https://www.youtube.com/@albostechnologies16",
+    facebook: "https://www.facebook.com/Albos5412",
     twitter: "https://twitter.com/albostechnologies",
     github: "https://github.com/albostechnologies",
     dribbble: "https://dribbble.com/albostech",

@@ -27,6 +27,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://albostechnologies.com"),
   title: "Albos Technologies Pvt Ltd — Full-Stack Software Engineering",
   description:
     "Albos Technologies Pvt Ltd is a full-stack software engineering company based in Pune, India. 250+ engineers, 500+ projects, 12 industries — from MVPs to complex enterprise platforms.",

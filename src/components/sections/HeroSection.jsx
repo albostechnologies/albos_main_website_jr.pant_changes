@@ -6,17 +6,9 @@ import { ArrowRight, Play } from "lucide-react";
 import { VideoModal } from "@/components/ui/VideoModal";
 import { HeroCanvas } from "@/components/three/HeroCanvas";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { TypewriterText } from "@/components/ui/TypewriterText";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { fadeUp, staggerContainer } from "@/lib/animations";
-
-const TYPEWRITER_WORDS = [
-  "Web Applications",
-  "Mobile Platforms",
-  "AI & Data Science",
-  "Cloud Infrastructure",
-];
 
 export function HeroSection({ onNavigate }) {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -86,11 +78,6 @@ export function HeroSection({ onNavigate }) {
           animate="visible"
           className="flex items-start justify-between"
         >
-          {/* Top-left: Section label */}
-          <ScrollReveal direction="down" delay={0.2}>
-            <SectionLabel label="Full-Stack Software Engineering" />
-          </ScrollReveal>
-
           {/* Top-right: Small badge */}
           <ScrollReveal direction="down" delay={0.4}>
             <div className="hidden md:flex items-center gap-2 border border-black/[0.06] rounded-full px-4 py-2 bg-black/[0.02]">
@@ -131,19 +118,20 @@ export function HeroSection({ onNavigate }) {
               </h1>
             </motion.div>
 
-            {/* Typewriter line */}
-            <motion.div
+            {/* Hero description */}
+            <motion.p
               variants={fadeUp}
-              className="mt-8 md:mt-12 flex items-center justify-center gap-2 text-lg sm:text-xl md:text-2xl lg:text-3xl font-[family-name:var(--font-inter)] text-[#71717A] px-2"
+              className="mx-auto mt-6 md:mt-8 max-w-3xl text-base sm:text-lg md:text-xl font-[family-name:var(--font-inter)] leading-relaxed text-[#71717A] px-4"
             >
-              <span className="inline-block w-4 sm:w-8 h-[1px] bg-[#71717A]/40 shrink-0" />
-              <span className="whitespace-nowrap">We build</span>{" "}
-              <TypewriterText
-                words={TYPEWRITER_WORDS}
-                className="text-[#18181B] font-medium"
-              />
-              <span className="inline-block w-4 sm:w-8 h-[1px] bg-[#71717A]/40 shrink-0" />
-            </motion.div>
+              We build{" "}
+              <span className="text-[#18181B] font-medium">
+                secure, scalable, and high-performance
+              </span>{" "}
+              software solutions tailored to your business goals. From startups
+              to enterprises, our expert team delivers technology that drives
+              growth, improves efficiency, and creates lasting competitive
+              advantages.
+            </motion.p>
 
             {/* Stat pill */}
             <motion.div
@@ -172,26 +160,6 @@ export function HeroSection({ onNavigate }) {
           animate="visible"
           className="flex items-end justify-between"
         >
-          {/* Bottom-left: Watch Showreel ghost button */}
-          <ScrollReveal direction="right" delay={1.2}>
-            <button
-              onClick={() => setIsVideoOpen(true)}
-              aria-label="Watch showreel video"
-              className="group flex items-center gap-2 sm:gap-3 border border-black/[0.12] rounded-full px-3 sm:px-5 py-2 sm:py-3 transition-all duration-300 hover:border-black/[0.25] hover:bg-black/[0.04]"
-            >
-              <span className="relative flex h-6 w-6 sm:h-8 sm:w-8 items-center justify-center">
-                {/* Pulse ring */}
-                <span className="absolute inset-0 rounded-full border border-[#F97316]/40 animate-pulse-ring" />
-                <span className="relative flex h-6 w-6 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-[#F97316]/10">
-                  <Play className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-[#F97316] fill-[#F97316] ml-0.5" />
-                </span>
-              </span>
-              <span className="font-[family-name:var(--font-inter)] text-[10px] sm:text-xs font-medium uppercase tracking-wider text-[#18181B]">
-                Showreel
-              </span>
-            </button>
-          </ScrollReveal>
-
           {/* Bottom-center: Scroll indicator */}
           <AnimatePresence>
             {showScrollIndicator && (

@@ -20,6 +20,7 @@ import {
   FileText,
   Briefcase,
   Rocket,
+  Heart,
 } from "lucide-react";
 import {
   SERVICES,
@@ -290,7 +291,7 @@ export function Footer({ onNavigate }) {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-center font-[family-name:var(--font-inter)] text-xs font-medium uppercase tracking-widest text-[#A1A1AA]/60 mb-6">
+          <p className="text-center font-[family-name:var(--font-inter)] text-xs font-medium uppercase tracking-widest text-[#A1A1AA]/100 mb-6">
             Trusted by leading companies
           </p>
           <div
@@ -308,7 +309,7 @@ export function Footer({ onNavigate }) {
               {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, i) => (
                 <span
                   key={`${logo}-${i}`}
-                  className="flex-shrink-0 font-[family-name:var(--font-plus-jakarta)] text-lg font-bold text-[#A1A1AA]/30 grayscale select-none whitespace-nowrap transition-colors duration-500 hover:text-[#A1A1AA]/50"
+                  className="flex-shrink-0 font-[family-name:var(--font-plus-jakarta)] text-lg font-bold text-[#A1A1AA]/100 grayscale select-none whitespace-nowrap transition-colors duration-500 hover:text-[#A1A1AA]/500"
                 >
                   {logo}
                 </span>
@@ -348,8 +349,13 @@ export function Footer({ onNavigate }) {
                 priority
               />
             </button>
-            <p className="mt-3 font-[family-name:var(--font-plus-jakarta)] text-sm font-semibold text-[#F5F4F0]/80 tracking-wide uppercase"></p>
-            <p className="mt-3 text-sm leading-relaxed text-[#A1A1AA] max-w-xs"></p>
+
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-[#A1A1AA]">
+              Albos Technologies transforms business ideas into powerful digital
+              products with creative design, reliable development, smart
+              automation, and result-driven digital solutions for every stage of
+              growth.
+            </p>
 
             {/* Enhanced Newsletter Card */}
             <div className="mt-6 rounded-xl border border-white/[0.06] bg-[#0F0F0F] p-5 relative overflow-hidden">
@@ -364,50 +370,10 @@ export function Footer({ onNavigate }) {
                   </h4>
                 </div>
 
-                <p className="text-xs text-[#A1A1AA] mb-3">
-                  Get exclusive insights on enterprise tech, engineering
-                  culture, and industry trends.
-                </p>
-
-                {/* Social proof */}
-                <div className="flex items-center gap-1.5 mb-4">
-                  <div className="flex -space-x-1.5">
-                    {[0, 1, 2].map((i) => (
-                      <div
-                        key={i}
-                        className="size-5 rounded-full bg-[#1A1A1A] border border-white/[0.1] flex items-center justify-center"
-                      >
-                        <span className="text-[7px] font-bold text-[#A1A1AA]">
-                          {["SC", "MT", "DK"][i]}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                  <span className="text-[11px] text-[#A1A1AA] font-medium">
-                    Join 2,500+ subscribers
-                  </span>
-                </div>
-
-                {/* Mini badges */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="inline-flex items-center gap-1 rounded-full bg-white/[0.04] border border-white/[0.06] px-2 py-0.5 text-[10px] text-[#A1A1AA]">
-                    <Shield className="size-2.5 text-green-500" />
-                    Free forever
-                  </span>
-                  <span className="inline-flex items-center gap-1 rounded-full bg-white/[0.04] border border-white/[0.06] px-2 py-0.5 text-[10px] text-[#A1A1AA]">
-                    <Zap className="size-2.5 text-[#F97316]" />
-                    No spam
-                  </span>
-                  <span className="inline-flex items-center gap-1 rounded-full bg-white/[0.04] border border-white/[0.06] px-2 py-0.5 text-[10px] text-[#A1A1AA]">
-                    <Mail className="size-2.5 text-blue-400" />
-                    Weekly insights
-                  </span>
-                </div>
-
                 {/* Email form */}
                 <form onSubmit={handleSubscribe} className="flex gap-2">
                   <div className="relative flex-1">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-[#A1A1AA]" />
+                    <Mail className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3.5 text-[#A1A1AA]" />
                     <input
                       type="email"
                       value={email}
@@ -420,7 +386,7 @@ export function Footer({ onNavigate }) {
                       placeholder="your@email.com"
                       required
                       disabled={isSubscribing}
-                      className="w-full rounded-lg border bg-white/[0.04] py-2.5 pl-9 pr-3 text-sm text-[#F5F4F0] placeholder:text-[#A1A1AA] focus:outline-none transition-all duration-300 disabled:opacity-50"
+                      className="h-9 w-full rounded-lg border bg-white/[0.04] pl-8 pr-3 text-[13px] text-[#F5F4F0] placeholder:text-[#A1A1AA] focus:outline-none transition-all duration-300 disabled:opacity-50"
                       style={{
                         borderColor: inputFocused
                           ? "rgba(249, 115, 22, 0.5)"
@@ -434,21 +400,15 @@ export function Footer({ onNavigate }) {
                   <button
                     type="submit"
                     disabled={isSubscribing}
-                    className="flex items-center justify-center gap-1.5 rounded-lg bg-[#F97316] px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#EA580C] hover:shadow-lg hover:shadow-[#F97316]/20 shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#F97316] text-white transition-all duration-300 hover:bg-[#EA580C] hover:shadow-lg hover:shadow-[#F97316]/20 disabled:opacity-50 disabled:cursor-not-allowed"
                     aria-label="Subscribe to newsletter"
                   >
                     {isSubscribing ? (
                       <Loader2 className="size-4 animate-spin" />
                     ) : subscribed ? (
-                      <span className="flex items-center gap-1">
-                        <Check className="size-4" />
-                        Done
-                      </span>
+                      <Check className="size-4" />
                     ) : (
-                      <>
-                        <Send className="size-3.5" />
-                        <span className="hidden sm:inline">Subscribe</span>
-                      </>
+                      <Send className="size-4" />
                     )}
                   </button>
                 </form>
@@ -562,38 +522,35 @@ export function Footer({ onNavigate }) {
           </motion.div>
         </motion.div>
 
-        {/* Bottom row */}
+        {/* Bottom row — legal links + socials */}
         <div className="mt-14 pt-8 border-t border-white/[0.06]">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            {/* Copyright & Legal */}
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
-              <button
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                className="flex items-center gap-1.5 text-xs text-[#A1A1AA] transition-colors duration-300 hover:text-[#F97316]"
-                aria-label="Scroll back to top"
+            {/* Legal links */}
+            <nav
+              className="flex flex-wrap items-center gap-x-5 gap-y-3"
+              aria-label="Legal"
+            >
+              <a
+                href="/privacy-policy"
+                className="text-xs text-[#A1A1AA] transition-colors duration-300 hover:text-[#F97316]"
               >
-                <ArrowUp className="size-3" />
-                Back to top
-              </button>
-              <p className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#A1A1AA]">
-                &copy; {new Date().getFullYear()} Albos Technologies Pvt Ltd
-              </p>
-              <div className="flex items-center gap-4">
-                <a
-                  href="/privacy-policy"
-                  className="text-xs text-[#A1A1AA] transition-colors duration-300 hover:text-[#F97316]"
-                >
-                  Privacy Policy
-                </a>
-                <span className="text-[#A1A1AA]/30">|</span>
-                <a
-                  href="/terms-of-use"
-                  className="text-xs text-[#A1A1AA] transition-colors duration-300 hover:text-[#F97316]"
-                >
-                  Terms of Use
-                </a>
-              </div>
-            </div>
+                Privacy Policy
+              </a>
+              <span className="size-1 rounded-full bg-[#A1A1AA]/30" />
+              <a
+                href="/terms-of-use"
+                className="text-xs text-[#A1A1AA] transition-colors duration-300 hover:text-[#F97316]"
+              >
+                Terms of Use
+              </a>
+              <span className="size-1 rounded-full bg-[#A1A1AA]/30" />
+              <a
+                href="/sitemap.xml"
+                className="text-xs text-[#A1A1AA] transition-colors duration-300 hover:text-[#F97316]"
+              >
+                Sitemap
+              </a>
+            </nav>
 
             {/* Social Icons */}
             <div className="flex items-center gap-5">
@@ -610,6 +567,36 @@ export function Footer({ onNavigate }) {
                   viewBox="0 0 24 24"
                 >
                   <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+              </a>
+              <a
+                href={CONTACT_INFO.social.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="magnetic-hover text-[#A1A1AA] transition-all duration-300 hover:text-[#F97316]"
+                aria-label="YouTube"
+              >
+                <svg
+                  className="size-[18px]"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+              </a>
+              <a
+                href={CONTACT_INFO.social.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="magnetic-hover text-[#A1A1AA] transition-all duration-300 hover:text-[#F97316]"
+                aria-label="Facebook"
+              >
+                <svg
+                  className="size-[18px]"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                 </svg>
               </a>
               <a
@@ -658,9 +645,31 @@ export function Footer({ onNavigate }) {
                 </svg>
               </a>
             </div>
+          </div>
+        </div>
+      </div>
 
-            {/* Made with love */}
-            <p className="font-[family-name:var(--font-inter)] text-xs text-[#A1A1AA]/60"></p>
+      {/* ============ COPYRIGHT BAR ============ */}
+      <div className="relative border-t border-white/[0.06] bg-[#030303]">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-6">
+          <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
+            {/* Logo + copyright */}
+            <div className="flex items-center gap-3">
+              <Image
+                src="/images/albos-logo-transparent.png"
+                alt="Albos Technologies Pvt Ltd"
+                width={371}
+                height={99}
+                className="h-6 w-auto opacity-70"
+              />
+              <span className="hidden h-4 w-px bg-white/[0.1] sm:block" />
+              <p className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#A1A1AA]">
+                &copy; {new Date().getFullYear()} Albos Technologies Pvt Ltd.
+                All rights reserved.
+              </p>
+            </div>
+
+            {/* Made with love + back to top */}
           </div>
         </div>
       </div>

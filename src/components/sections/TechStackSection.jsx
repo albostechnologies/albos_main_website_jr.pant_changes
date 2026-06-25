@@ -2,12 +2,96 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiVuedotjs,
+  SiAngular,
+  SiTypescript,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiPython,
+  SiDotnet,
+  SiNestjs,
+  SiGraphql,
+  SiPostgresql,
+  SiMysql,
+  SiMongodb,
+  SiRedis,
+  SiElasticsearch,
+  SiGooglecloud,
+  SiDocker,
+  SiKubernetes,
+  SiTerraform,
+  SiJenkins,
+  SiGithubactions,
+  SiFlutter,
+  SiSwift,
+  SiKotlin,
+} from "react-icons/si";
+import { FaJava, FaAws, FaApple, FaMicrosoft } from "react-icons/fa";
+import { DiMsqlServer } from "react-icons/di";
 import { TECH_STACK } from "@/lib/constants";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { cn } from "@/lib/utils";
 
 const tabKeys = ["web", "database", "cloud", "mobile"];
+
+// Original brand logos keyed by the tech `name` in TECH_STACK.
+// Techs without a brand logo gracefully fall back to the colored dot.
+const TECH_ICONS = {
+  React: SiReact,
+  "Next.js": SiNextdotjs,
+  "Vue.js": SiVuedotjs,
+  Angular: SiAngular,
+  TypeScript: SiTypescript,
+  "Tailwind CSS": SiTailwindcss,
+  "Node.js": SiNodedotjs,
+  Python: SiPython,
+  Java: FaJava,
+  ".NET": SiDotnet,
+  NestJS: SiNestjs,
+  GraphQL: SiGraphql,
+  PostgreSQL: SiPostgresql,
+  MySQL: SiMysql,
+  "SQL Server": DiMsqlServer,
+  MongoDB: SiMongodb,
+  Redis: SiRedis,
+  Elasticsearch: SiElasticsearch,
+  DynamoDB: FaAws,
+  AWS: FaAws,
+  Azure: FaMicrosoft,
+  GCP: SiGooglecloud,
+  Docker: SiDocker,
+  Kubernetes: SiKubernetes,
+  Terraform: SiTerraform,
+  Jenkins: SiJenkins,
+  "GitHub Actions": SiGithubactions,
+  "React Native": SiReact,
+  Flutter: SiFlutter,
+  Swift: SiSwift,
+  Kotlin: SiKotlin,
+  "Objective-C": FaApple,
+};
+
+// Near-white brand colors are invisible on the light section background,
+// so darken them while leaving saturated brand colors untouched.
+function getIconColor(color) {
+  const hex = color.replace("#", "");
+  const full =
+    hex.length === 3
+      ? hex
+          .split("")
+          .map((c) => c + c)
+          .join("")
+      : hex;
+  const r = parseInt(full.slice(0, 2), 16);
+  const g = parseInt(full.slice(2, 4), 16);
+  const b = parseInt(full.slice(4, 6), 16);
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.85 ? "#18181B" : color;
+}
 
 // Staggered entrance variants for tech cards
 const gridContainerVariants = {
@@ -38,6 +122,7 @@ const gridItemVariants = {
 
 function TechCard({ name, color }) {
   const [isHovered, setIsHovered] = useState(false);
+  const Icon = TECH_ICONS[name];
 
   return (
     <motion.div
@@ -51,25 +136,38 @@ function TechCard({ name, color }) {
           : "border-black/[0.06] bg-black/[0.02]",
       )}
     >
-      {/* Colored dot indicator */}
-      <span className="relative flex h-2.5 w-2.5 shrink-0" style={{ color }}>
-        <span
-          className="absolute inline-flex h-full w-full rounded-full opacity-40"
-          style={{
-            backgroundColor: color,
-            animation: isHovered
-              ? "ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite"
-              : "none",
-          }}
-        />
+      {/* Brand logo (falls back to a colored dot when no logo is mapped) */}
+      <span
+        className="relative flex h-6 w-6 shrink-0 items-center justify-center"
+        style={{ color: Icon ? getIconColor(color) : color }}
+      >
+        {Icon ? (
+          <Icon
+            aria-hidden="true"
+            className="h-[18px] w-[18px] transition-transform duration-300"
+            style={{ transform: isHovered ? "scale(1.18)" : "scale(1)" }}
+          />
+        ) : (
+          <span className="relative flex h-2.5 w-2.5">
+            <span
+              className="absolute inline-flex h-full w-full rounded-full opacity-40"
+              style={{
+                backgroundColor: color,
+                animation: isHovered
+                  ? "ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite"
+                  : "none",
+              }}
+            />
 
-        <span
-          className="relative inline-flex h-2.5 w-2.5 rounded-full transition-transform duration-300"
-          style={{
-            backgroundColor: color,
-            transform: isHovered ? "scale(1.3)" : "scale(1)",
-          }}
-        />
+            <span
+              className="relative inline-flex h-2.5 w-2.5 rounded-full transition-transform duration-300"
+              style={{
+                backgroundColor: color,
+                transform: isHovered ? "scale(1.3)" : "scale(1)",
+              }}
+            />
+          </span>
+        )}
       </span>
 
       {/* Tech name */}
@@ -101,7 +199,7 @@ export function TechStackSection() {
   return (
     <section
       id="technologies"
-      className="relative bg-albos-mid py-20 md:py-28 lg:py-36 overflow-hidden"
+      className="relative bg-albos-mid py-16 md:py-20 lg:py-28 overflow-hidden"
     >
       {/* Gradient accent line at top */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#F97316]/40 to-transparent" />

@@ -209,7 +209,7 @@ export function AboutSection() {
       </div>
 
       {/* ═══ MISSION STATEMENT (Light) ═══ */}
-      <div className="relative bg-[#FAFAFA] py-24 md:py-32 lg:py-40">
+      <div className="relative bg-[#FAFAFA] py-16 md:py-20 lg:py-28">
         {/* Subtle top/bottom border */}
         <div className="absolute top-0 left-0 right-0 h-px bg-black/[0.06]" />
 
@@ -247,7 +247,7 @@ export function AboutSection() {
       </div>
 
       {/* ═══ STORY TIMELINE ═══ */}
-      <div className="relative bg-[#FAFAFA] py-20 md:py-28 lg:py-36">
+      <div className="relative bg-[#FAFAFA] py-16 md:py-20 lg:py-28">
         <div className="absolute top-0 left-0 right-0 h-px bg-black/[0.06]" />
 
         <div className="mx-auto max-w-[var(--container-max)] px-6 md:px-12 lg:px-20">
@@ -281,7 +281,7 @@ export function AboutSection() {
       </div>
 
       {/* ═══ NUMBERS ═══ */}
-      <div className="relative bg-[#FFFFFF] py-20 md:py-28 lg:py-32">
+      <div className="relative bg-[#FFFFFF] py-16 md:py-20 lg:py-28">
         <div className="absolute top-0 left-0 right-0 h-px bg-black/[0.06]" />
         <div className="absolute bottom-0 left-0 right-0 h-px bg-black/[0.06]" />
 
@@ -331,7 +331,7 @@ export function AboutSection() {
       </div>
 
       {/* ═══ GLOBAL PRESENCE / WORLD MAP ═══ */}
-      <div className="relative bg-[#FAFAFA] py-20 md:py-28 lg:py-36">
+      <div className="relative bg-[#FAFAFA] py-16 md:py-20 lg:py-28">
         <div className="absolute top-0 left-0 right-0 h-px bg-black/[0.06]" />
 
         <div className="mx-auto max-w-[var(--container-max)] px-6 md:px-12 lg:px-20">
@@ -358,7 +358,7 @@ export function AboutSection() {
       {/* ═══ LEADERSHIP ═══ (section intentionally disabled) */}
 
       {/* ═══ CULTURE & VALUES ═══ */}
-      <div className="relative bg-[#FFFFFF] py-20 md:py-28 lg:py-36">
+      <div className="relative bg-[#FFFFFF] py-16 md:py-20 lg:py-28">
         <div className="absolute top-0 left-0 right-0 h-px bg-black/[0.06]" />
 
         <div className="mx-auto max-w-[var(--container-max)] px-6 md:px-12 lg:px-20">
@@ -383,7 +383,7 @@ export function AboutSection() {
       </div>
 
       {/* ═══ CULTURE & BENEFITS ═══ */}
-      <div className="relative bg-[#FAFAFA] py-20 md:py-28 lg:py-36">
+      <div className="relative bg-[#FAFAFA] py-16 md:py-20 lg:py-28">
         <div className="absolute top-0 left-0 right-0 h-px bg-black/[0.06]" />
         {/* Subtle accent glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#F97316]/[0.03] blur-[180px] pointer-events-none" />
@@ -414,7 +414,7 @@ export function AboutSection() {
       </div>
 
       {/* ═══ HIRING CTA ═══ */}
-      <div className="relative bg-[#FAFAFA] py-24 md:py-32 lg:py-40">
+      <div className="relative bg-[#FAFAFA] py-16 md:py-20 lg:py-28">
         <div className="absolute top-0 left-0 right-0 h-px bg-black/[0.06]" />
 
         {/* Accent glow */}

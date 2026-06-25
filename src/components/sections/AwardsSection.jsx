@@ -43,7 +43,7 @@ export function AwardsSection() {
   );
 
   return (
-    <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+    <section className="relative py-16 md:py-20 lg:py-28 overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAFA] via-[#FAFAFA] to-[#EBE9E4]" />
       {/* Subtle top/bottom accent lines */}

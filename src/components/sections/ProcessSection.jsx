@@ -106,7 +106,7 @@ function ConnectingLine() {
 
 export function ProcessSection() {
   return (
-    <section className="relative mesh-gradient-2 py-20 md:py-28 lg:py-36 overflow-hidden">
+    <section className="relative mesh-gradient-2 py-16 md:py-20 lg:py-28 overflow-hidden">
       {/* Subtle top/bottom border lines */}
       <div className="absolute top-0 left-0 right-0 h-px bg-black/[0.06]" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-black/[0.06]" />

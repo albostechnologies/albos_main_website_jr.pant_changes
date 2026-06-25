@@ -3,28 +3,22 @@ import { getPublishedBlogPosts } from "@/data/blog-posts";
 
 /* ─── SEO Metadata ─── */
 export const metadata = {
-  title:
-    "Blog — Albos Technologies Pvt Ltd | Engineering Insights & Tech Articles",
+  title: "Technology Blog on Software Development, AI and Digital Marketing",
   description:
-    "Explore engineering deep-dives, AI/ML insights, cloud architecture guides, design system strategies, and enterprise case studies from the Albos Technologies Pvt Ltd team. Stay ahead with expert perspectives on building software at scale.",
+    "Read expert insights, industry trends and practical guides on software development, AI, web technologies and digital marketing.",
   keywords: [
-    "engineering blog",
-    "software development articles",
-    "AI and machine learning insights",
-    "cloud architecture",
-    "DevOps best practices",
-    "design systems",
-    "enterprise software",
-    "Kubernetes",
-    "microservices",
-    "Albos Technologies Pvt Ltd blog",
+    "technology blog",
+    "software development blog",
+    "AI insights",
+    "web technologies",
+    "digital marketing",
+    "Albos Technologies blog",
   ],
   authors: [{ name: "Albos Technologies Pvt Ltd" }],
   openGraph: {
-    title:
-      "Blog — Albos Technologies Pvt Ltd | Engineering Insights & Tech Articles",
+    title: "Technology Blog on Software Development, AI and Digital Marketing",
     description:
-      "Explore engineering deep-dives, AI/ML insights, cloud architecture guides, and enterprise case studies from the Albos Technologies Pvt Ltd team.",
+      "Read expert insights, industry trends and practical guides on software development, AI, web technologies and digital marketing.",
     type: "website",
     url: "https://albostechnologies.com/blog",
     siteName: "Albos Technologies Pvt Ltd",
@@ -32,10 +26,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "Blog — Albos Technologies Pvt Ltd | Engineering Insights & Tech Articles",
+    title: "Technology Blog on Software Development, AI and Digital Marketing",
     description:
-      "Explore engineering deep-dives, AI/ML insights, cloud architecture guides, and enterprise case studies from the Albos Technologies Pvt Ltd team.",
+      "Read expert insights, industry trends and practical guides on software development, AI, web technologies and digital marketing.",
   },
   robots: "index, follow",
   alternates: {

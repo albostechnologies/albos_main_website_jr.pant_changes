@@ -1,0 +1,128 @@
+# =============================================================================
+# Albos Technologies — Apache config for the static export (out/)
+# -----------------------------------------------------------------------------
+# This file lives in /public so `next build` copies it to /out on every build.
+# Upload the CONTENTS of /out (including this file) to your web root.
+# Tuned for the Next.js static export: trailingSlash URLs (/about/ -> about/
+# index.html), content-hashed assets under /_next/static, and a custom 404.
+# =============================================================================
+
+Options -MultiViews -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # --- Force HTTPS -----------------------------------------------------------
+  # Uncomment once an SSL certificate is installed for the domain.
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # --- Force www / non-www (optional) ---------------------------------------
+  # Pick ONE. Strip "www." (recommended to match canonical URLs):
+  # RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  # RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+  # --- Enforce trailing slash (matches `trailingSlash: true`) ----------------
+  # Redirect /about -> /about/ for real directories, so the canonical URL with
+  # the trailing slash always wins. Files (e.g. /logo.svg) are left untouched.
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_URI} !(.+)/$
+  RewriteRule ^(.+)$ /$1/ [L,R=301]
+
+  # --- Hide the .html extension / index.html in the address bar (cosmetic) ---
+  # Redirect direct requests for *.html to their clean directory URL.
+  RewriteCond %{THE_REQUEST} \s/+(.+?)/index\.html[\s?] [NC]
+  RewriteRule ^ /%1/ [L,R=301]
+  RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+  RewriteRule ^ / [L,R=301]
+</IfModule>
+
+# --- Custom error page -------------------------------------------------------
+# Next.js exports the not-found page as /404.html.
+ErrorDocument 404 /404.html
+
+# --- Compression -------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE font/ttf font/otf font/woff font/woff2
+  AddOutputFilterByType DEFLATE application/font-woff application/vnd.ms-fontobject
+</IfModule>
+
+# Brotli if the host provides it (better than gzip; harmless if absent).
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/xml
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json
+  AddOutputFilterByType BROTLI_COMPRESS image/svg+xml font/woff2
+</IfModule>
+
+# --- Caching -----------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Images.
+  ExpiresByType image/png                "access plus 1 year"
+  ExpiresByType image/jpeg               "access plus 1 year"
+  ExpiresByType image/gif                "access plus 1 year"
+  ExpiresByType image/webp               "access plus 1 year"
+  ExpiresByType image/avif               "access plus 1 year"
+  ExpiresByType image/svg+xml            "access plus 1 month"
+  ExpiresByType image/x-icon             "access plus 1 year"
+
+  # Fonts & build assets.
+  ExpiresByType font/woff2               "access plus 1 year"
+  ExpiresByType font/woff                "access plus 1 year"
+  ExpiresByType text/css                 "access plus 1 year"
+  ExpiresByType application/javascript   "access plus 1 year"
+
+  # HTML must always be revalidated so content updates appear immediately.
+  ExpiresByType text/html                "access plus 0 seconds"
+
+  # SEO files.
+  ExpiresByType application/xml          "access plus 1 day"
+  ExpiresByType text/plain               "access plus 1 day"
+</IfModule>
+
+# --- MIME types (in case the host's defaults are incomplete) ------------------
+<IfModule mod_mime.c>
+  AddType application/javascript        js mjs
+  AddType text/css                      css
+  AddType image/svg+xml                 svg svgz
+  AddType image/avif                    avif
+  AddType image/webp                    webp
+  AddType font/woff2                    woff2
+  AddType font/woff                     woff
+  AddType application/manifest+json     webmanifest
+  AddCharset UTF-8                      .html .css .js .json .svg .xml
+</IfModule>
+
+# --- Security headers --------------------------------------------------------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  # Enable HSTS only after HTTPS is confirmed working for all subdomains.
+  # Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+  # Content-hashed build assets under /_next/static never change -> cache hard.
+  <FilesMatch "\.(js|mjs|css|woff2?|ttf|otf|eot)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # HTML must always be revalidated so content updates appear immediately.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# --- Block access to dotfiles and sensitive files ----------------------------
+# Note: .json is intentionally NOT blocked — Next.js ships manifest/asset JSON.
+<FilesMatch "(^\.ht|\.(env|map|log)$)">
+  Require all denied
+</FilesMatch>

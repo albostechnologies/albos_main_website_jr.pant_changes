@@ -255,19 +255,6 @@ function ProjectScene({ project, index, isActive, direction }) {
         transition: "opacity 0.6s ease",
       }}
     >
-      {/* BACKGROUND: Large number typography */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-        <span
-          className="font-[family-name:var(--font-plus-jakarta)] font-black text-white/[0.025] select-none leading-none"
-          style={{
-            fontSize: "clamp(8rem, 28vw, 32rem)",
-            letterSpacing: "-0.05em",
-          }}
-        >
-          {String(index + 1).padStart(2, "0")}
-        </span>
-      </div>
-
       {/* MIDGROUND: Project info (left side) */}
       <div className="absolute inset-0 flex items-center z-10">
         <div className="w-full px-6 md:px-12 lg:px-20">

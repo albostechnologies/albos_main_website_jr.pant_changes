@@ -129,10 +129,16 @@ export async function generateMetadata({ params }) {
 
   const canonicalUrl = `https://albostechnologies.com/services/${service.slug}`;
 
+  const seo = service.seo || {};
+  const metaTitle =
+    seo.metaTitle || `${service.title} Services | Albos Technologies Pvt Ltd`;
+  const metaDescription = seo.metaDescription || service.description;
+
   return {
-    title: `${service.title} Services | Albos Technologies Pvt Ltd`,
-    description: service.description,
+    title: metaTitle,
+    description: metaDescription,
     keywords: [
+      ...(seo.focusKeyword ? [seo.focusKeyword] : []),
       service.title,
       ...service.capabilities,
       ...service.techStack,
@@ -140,8 +146,8 @@ export async function generateMetadata({ params }) {
     ],
     alternates: { canonical: canonicalUrl },
     openGraph: {
-      title: `${service.title} — Albos Technologies`,
-      description: service.description,
+      title: metaTitle,
+      description: metaDescription,
       type: "website",
       url: canonicalUrl,
       siteName: "Albos Technologies Pvt Ltd",
@@ -149,8 +155,8 @@ export async function generateMetadata({ params }) {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${service.title} — Albos Technologies`,
-      description: service.description,
+      title: metaTitle,
+      description: metaDescription,
     },
   };
 }
@@ -322,9 +328,20 @@ export default async function ServiceDetailPage({ params }) {
               <p className="text-base md:text-lg leading-relaxed text-[#52525B] font-[family-name:var(--font-inter)]">
                 {service.overview}
               </p>
-              <p className="text-base leading-relaxed text-[#71717A] font-[family-name:var(--font-inter)]">
-                {service.description}
-              </p>
+              {service.content && service.content.length > 0 ? (
+                service.content.map((paragraph, i) => (
+                  <p
+                    key={i}
+                    className="text-base leading-relaxed text-[#71717A] font-[family-name:var(--font-inter)]"
+                  >
+                    {paragraph}
+                  </p>
+                ))
+              ) : (
+                <p className="text-base leading-relaxed text-[#71717A] font-[family-name:var(--font-inter)]">
+                  {service.description}
+                </p>
+              )}
             </ScrollReveal>
           </div>
         </div>

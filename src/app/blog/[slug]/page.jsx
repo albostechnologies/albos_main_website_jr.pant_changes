@@ -358,9 +358,9 @@ export default async function BlogDetailPage({ params }) {
 
           {/* ─── Author Card ─── */}
           <div className="mt-12 pt-8 border-t border-[#E4E4E7]">
-            <div className="rounded-2xl border border-[#E4E4E7] bg-white p-6 md:p-8">
+            <div className="relative overflow-hidden rounded-2xl border border-[#E4E4E7] bg-white p-6 md:p-8">
               {/* Accent top border */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#F97316] via-[#FB923C] to-[#F97316] rounded-t-2xl" />
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#F97316] via-[#FB923C] to-[#F97316]" />
 
               <div className="flex flex-col sm:flex-row gap-5">
                 {/* Avatar */}

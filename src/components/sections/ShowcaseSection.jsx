@@ -25,25 +25,25 @@ const showcaseData = [
     label: "BRANDING",
     cards: [
       {
-        image: "/images/showcase/branding-1.png",
+        image: "/images/expertise/branding/1.png",
         rotation: -6,
         scale: 0.85,
         isLandscape: true,
       },
       {
-        image: "/images/showcase/branding-2.png",
+        image: "/images/expertise/branding/2.png",
         rotation: 4,
         scale: 0.9,
-        isLandscape: false,
+        isLandscape: true,
       },
       {
-        image: "/images/showcase/branding-3.png",
+        image: "/images/expertise/branding/3.png",
         rotation: -3,
         scale: 0.82,
         isLandscape: true,
       },
       {
-        image: "/images/showcase/branding-4.png",
+        image: "/images/expertise/branding/4.png",
         rotation: 5,
         scale: 0.88,
         isLandscape: false,
@@ -55,28 +55,28 @@ const showcaseData = [
     label: "DESIGN",
     cards: [
       {
-        image: "/images/showcase/design-1.png",
+        image: "/images/expertise/design/1.png",
         rotation: 3,
         scale: 0.9,
-        isLandscape: true,
+        isLandscape: false,
       },
       {
-        image: "/images/showcase/design-2.png",
+        image: "/images/expertise/design/2.png",
         rotation: -5,
         scale: 0.85,
         isLandscape: false,
       },
       {
-        image: "/images/showcase/design-3.png",
+        image: "/images/expertise/design/3.png",
         rotation: -2,
         scale: 0.83,
-        isLandscape: true,
+        isLandscape: false,
       },
       {
-        image: "/images/showcase/design-4.png",
+        image: "/images/expertise/design/4.png",
         rotation: 4,
         scale: 0.87,
-        isLandscape: false,
+        isLandscape: true,
       },
     ],
   },
@@ -85,28 +85,28 @@ const showcaseData = [
     label: "DEVELOPMENT",
     cards: [
       {
-        image: "/images/showcase/development-1.png",
+        image: "/images/expertise/development/1.png",
         rotation: -4,
         scale: 0.88,
         isLandscape: true,
       },
       {
-        image: "/images/showcase/development-2.png",
+        image: "/images/expertise/development/2.png",
         rotation: 5,
         scale: 0.82,
-        isLandscape: false,
+        isLandscape: true,
       },
       {
-        image: "/images/showcase/development-3.png",
+        image: "/images/expertise/development/3.png",
         rotation: 2,
         scale: 0.84,
         isLandscape: true,
       },
       {
-        image: "/images/showcase/development-4.png",
+        image: "/images/expertise/development/4.png",
         rotation: -3,
         scale: 0.86,
-        isLandscape: false,
+        isLandscape: true,
       },
     ],
   },
@@ -115,32 +115,98 @@ const showcaseData = [
     label: "STRATEGY",
     cards: [
       {
-        image: "/images/showcase/strategy-1.png",
+        image: "/images/expertise/Strategy/1.png",
         rotation: 4,
         scale: 0.85,
         isLandscape: true,
       },
       {
-        image: "/images/showcase/strategy-2.png",
+        image: "/images/expertise/Strategy/2.png",
         rotation: -3,
         scale: 0.9,
-        isLandscape: false,
+        isLandscape: true,
       },
       {
-        image: "/images/showcase/strategy-3.png",
+        image: "/images/expertise/Strategy/3.png",
         rotation: -5,
         scale: 0.83,
         isLandscape: true,
       },
       {
-        image: "/images/showcase/strategy-4.png",
+        image: "/images/expertise/Strategy/4.png",
         rotation: 3,
         scale: 0.87,
-        isLandscape: false,
+        isLandscape: true,
       },
     ],
   },
 ];
+
+/* ------------------------------------------------------------------ */
+/*  Responsive orbit configuration                                    */
+/*  Single source of truth driven by CSS media queries (matchMedia).  */
+/*  Each breakpoint defines the orbit radii AND the exact pixel size   */
+/*  of every card so centering stays pixel-perfect at any width.       */
+/* ------------------------------------------------------------------ */
+
+const RESPONSIVE_BREAKPOINTS = [
+  // Small phones
+  {
+    query: "(max-width: 380px)",
+    rx: 132,
+    ry: 96,
+    land: { w: 132, h: 84 },
+    port: { w: 88, h: 124 },
+  },
+  // Phones
+  {
+    query: "(max-width: 479px)",
+    rx: 150,
+    ry: 108,
+    land: { w: 152, h: 96 },
+    port: { w: 100, h: 140 },
+  },
+  // Large phones
+  {
+    query: "(max-width: 639px)",
+    rx: 172,
+    ry: 122,
+    land: { w: 172, h: 108 },
+    port: { w: 112, h: 158 },
+  },
+  // Small tablets
+  {
+    query: "(max-width: 767px)",
+    rx: 214,
+    ry: 144,
+    land: { w: 200, h: 124 },
+    port: { w: 128, h: 184 },
+  },
+  // Tablets
+  {
+    query: "(max-width: 1023px)",
+    rx: 262,
+    ry: 162,
+    land: { w: 224, h: 138 },
+    port: { w: 152, h: 208 },
+  },
+  // Small laptops
+  {
+    query: "(max-width: 1279px)",
+    rx: 312,
+    ry: 186,
+    land: { w: 256, h: 156 },
+    port: { w: 168, h: 232 },
+  },
+];
+
+// Default (desktop / >= 1280px) — also the SSR fallback.
+const RESPONSIVE_DEFAULT = {
+  rx: 360,
+  ry: 210,
+  land: { w: 288, h: 176 },
+  port: { w: 192, h: 256 },
+};
 
 /* ------------------------------------------------------------------ */
 /*  Utility: shuffle array (Fisher-Yates)                             */
@@ -167,6 +233,8 @@ function OrbitingCard({
   slotAngleDeg,
   orbitRadiusX,
   orbitRadiusY,
+  cardW,
+  cardH,
 }) {
   // The continuously rotating base angle
   const baseAngle = useMotionValue(0);
@@ -222,22 +290,18 @@ function OrbitingCard({
     baseAngle.set((baseAngle.get() + delta * 0.02) % 360);
   });
 
-  const cardWidth = card.isLandscape
-    ? "w-44 sm:w-52 md:w-60 lg:w-72"
-    : "w-28 sm:w-36 md:w-40 lg:w-48";
-  const cardHeight = card.isLandscape
-    ? "h-28 sm:h-32 md:h-38 lg:h-44"
-    : "h-44 sm:h-52 md:h-56 lg:h-64";
-
-  // Half-width/height for centering
-  const halfW = card.isLandscape ? 144 : 96;
-  const halfH = card.isLandscape ? 88 : 128;
+  // Exact pixel sizing keeps the card perfectly centered on its orbit point
+  // at every breakpoint (half-offsets always match the rendered size).
+  const halfW = cardW / 2;
+  const halfH = cardH / 2;
 
   return (
     <motion.div
       key={`${categoryKey}-orbit-${index}`}
-      className={`absolute ${cardWidth} ${cardHeight} rounded-2xl overflow-hidden pointer-events-none`}
+      className="absolute rounded-2xl overflow-hidden pointer-events-none"
       style={{
+        width: cardW,
+        height: cardH,
         x,
         y,
         rotate: tilt,
@@ -278,7 +342,7 @@ function OrbitingCard({
           alt={`${categoryKey} showcase ${index + 1}`}
           fill
           className="object-cover rounded-2xl transition-transform duration-700 group-hover:scale-110"
-          sizes="(max-width: 640px) 176px, (max-width: 768px) 208px, (max-width: 1024px) 240px, 288px"
+          sizes="(max-width: 479px) 152px, (max-width: 767px) 200px, (max-width: 1023px) 224px, 288px"
         />
 
         {/* Glassmorphism overlay on hover */}
@@ -381,25 +445,31 @@ export function ShowcaseSection() {
     };
   }, [shufflePositions]);
 
-  // Orbit radii (responsive)
-  const [orbitRadius, setOrbitRadius] = useState({ rx: 340, ry: 200 });
+  // Responsive orbit config (radii + card sizes), resolved via CSS media
+  // queries with matchMedia so the orbit animation adapts cleanly from the
+  // smallest phone up to large desktops — min/max-width breakpoints.
+  const [responsive, setResponsive] = useState(RESPONSIVE_DEFAULT);
 
   useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth < 768) {
-        setOrbitRadius({ rx: 160, ry: 110 });
-      } else if (window.innerWidth < 1024) {
-        setOrbitRadius({ rx: 260, ry: 160 });
-      } else if (window.innerWidth < 1280) {
-        setOrbitRadius({ rx: 300, ry: 180 });
-      } else {
-        setOrbitRadius({ rx: 360, ry: 210 });
-      }
-    }
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    // Build a MediaQueryList for each breakpoint (max-width ranges); the
+    // default config applies above the largest breakpoint (min-width 1280px).
+    const mqls = RESPONSIVE_BREAKPOINTS.map((bp) => ({
+      bp,
+      mql: window.matchMedia(bp.query),
+    }));
+
+    const resolve = () => {
+      const match = mqls.find(({ mql }) => mql.matches);
+      setResponsive(match ? match.bp : RESPONSIVE_DEFAULT);
+    };
+
+    resolve();
+    mqls.forEach(({ mql }) => mql.addEventListener("change", resolve));
+    return () =>
+      mqls.forEach(({ mql }) => mql.removeEventListener("change", resolve));
   }, []);
+
+  const orbitRadius = { rx: responsive.rx, ry: responsive.ry };
 
   return (
     <section
@@ -508,8 +578,10 @@ export function ShowcaseSection() {
           Currently showing {activeCategory.label} projects
         </div>
 
-        {/* Floating orbit cards — desktop & tablet */}
-        <div className="hidden md:block absolute inset-0 pointer-events-none z-30">
+        {/* Floating orbit cards — responsive across all screen sizes.
+            Sits behind the headline on phones (z-0) so the active category
+            stays readable, and in front from md up (md:z-30). */}
+        <div className="absolute inset-0 pointer-events-none z-0 md:z-30">
           {/* Orbit rings for visual depth */}
           <OrbitRing
             radiusX={orbitRadius.rx}
@@ -536,17 +608,24 @@ export function ShowcaseSection() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
-              {activeCategory.cards.map((card, i) => (
-                <OrbitingCard
-                  key={`${activeKey}-orbit-${i}`}
-                  card={card}
-                  index={i}
-                  categoryKey={activeKey}
-                  slotAngleDeg={slotAssignments[i]}
-                  orbitRadiusX={orbitRadius.rx}
-                  orbitRadiusY={orbitRadius.ry}
-                />
-              ))}
+              {activeCategory.cards.map((card, i) => {
+                const dims = card.isLandscape
+                  ? responsive.land
+                  : responsive.port;
+                return (
+                  <OrbitingCard
+                    key={`${activeKey}-orbit-${i}`}
+                    card={card}
+                    index={i}
+                    categoryKey={activeKey}
+                    slotAngleDeg={slotAssignments[i]}
+                    orbitRadiusX={orbitRadius.rx}
+                    orbitRadiusY={orbitRadius.ry}
+                    cardW={dims.w}
+                    cardH={dims.h}
+                  />
+                );
+              })}
             </motion.div>
           </AnimatePresence>
 
@@ -608,77 +687,7 @@ export function ShowcaseSection() {
           ))}
         </div>
 
-        {/* Mobile card carousel — visible on small screens only */}
-        <div className="md:hidden mt-10 w-full max-w-sm mx-auto relative z-10">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeKey}
-              className="grid grid-cols-2 gap-3"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{
-                type: "spring",
-                stiffness: 120,
-                damping: 18,
-                duration: 0.4,
-              }}
-            >
-              {activeCategory.cards.map((card, i) => (
-                <motion.div
-                  key={`${card.image}-${i}`}
-                  className="relative rounded-2xl overflow-hidden border border-black/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.08)] group"
-                  style={{
-                    height: card.isLandscape ? "140px" : "200px",
-                    gridColumn: card.isLandscape ? "span 2" : "span 1",
-                  }}
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                    y: 0,
-                  }}
-                  exit={{ opacity: 0, scale: 0.9, y: -10 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 120,
-                    damping: 18,
-                    delay: i * 0.08,
-                  }}
-                  whileHover={{ scale: 1.03 }}
-                >
-                  <Image
-                    src={card.image}
-                    alt={`${activeCategory.label} showcase ${i + 1}`}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    sizes="(max-width: 640px) 50vw, 384px"
-                  />
-
-                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-black/[0.08] to-transparent z-[2]" />
-                  <div className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-transparent via-[#F97316]/50 to-transparent z-[2]" />
-                  {/* Number badge */}
-                  <div className="absolute top-2 right-2 z-[3]">
-                    <span className="font-[family-name:var(--font-jetbrains-mono)] text-[8px] tracking-wider text-black/40 bg-black/10 backdrop-blur-sm px-1.5 py-0.5 rounded-full border border-black/[0.06]">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
         {/* Bottom hint text */}
-        <motion.p
-          className="mt-8 md:mt-12 text-[#71717A]/40 text-[10px] sm:text-xs tracking-[0.25em] uppercase font-[family-name:var(--font-jetbrains-mono)] text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-        >
-          Hover to explore — cards orbit and shuffle
-        </motion.p>
       </div>
 
       {/* Bottom gradient fade */}

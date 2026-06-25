@@ -37,7 +37,7 @@ export function LoadingSkeleton({
 
 export function SectionSkeleton() {
   return (
-    <div className="py-20 md:py-28 lg:py-32 px-6 md:px-12 lg:px-20">
+    <div className="py-16 md:py-20 lg:py-28 px-6 md:px-12 lg:px-20">
       <div className="mx-auto max-w-[1400px] space-y-8">
         <LoadingSkeleton variant="text" className="w-24 h-3" />
         <LoadingSkeleton variant="text" className="w-2/3 h-10" />

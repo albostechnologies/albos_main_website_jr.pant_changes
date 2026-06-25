@@ -648,7 +648,7 @@ export function ContactSection({ onNavigate }) {
       {/* ─── Split Layout ─── */}
       <div className="flex flex-col lg:flex-row">
         {/* LEFT COLUMN — Contact Info */}
-        <div className="relative bg-[#FAFAFA] w-full lg:w-5/12 py-16 md:py-20 lg:py-36 px-6 md:px-12 lg:px-16 xl:px-20">
+        <div className="relative bg-[#FAFAFA] w-full lg:w-5/12 py-16 md:py-20 lg:py-28 px-6 md:px-12 lg:px-16 xl:px-20">
           {/* Accent line */}
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#F97316]/40 to-transparent lg:right-auto lg:w-[200%]" />
 
@@ -748,7 +748,7 @@ export function ContactSection({ onNavigate }) {
         </div>
 
         {/* RIGHT COLUMN — Direct Contact Form */}
-        <div className="relative bg-white w-full lg:w-7/12 py-16 md:py-20 lg:py-36 px-6 md:px-12 lg:px-16 xl:px-20">
+        <div className="relative bg-white w-full lg:w-7/12 py-16 md:py-20 lg:py-28 px-6 md:px-12 lg:px-16 xl:px-20">
           {/* Gradient accent line at top */}
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#F97316] via-[#FB923C] to-transparent" />
           <div className="absolute top-[2px] left-0 right-0 h-px bg-black/[0.04]" />

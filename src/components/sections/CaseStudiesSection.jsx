@@ -111,7 +111,7 @@ export function CaseStudiesSection() {
   return (
     <section
       id="case-studies"
-      className="relative bg-albos-dark py-20 md:py-28 lg:py-36 overflow-hidden"
+      className="relative bg-albos-dark py-16 md:py-20 lg:py-28 overflow-hidden"
     >
       <div className="absolute top-0 left-0 right-0 h-px bg-white/[0.06]" />
 

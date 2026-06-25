@@ -79,7 +79,7 @@ export function TestimonialsSection() {
   const testimonial = TESTIMONIALS[current];
 
   return (
-    <section className="relative bg-[#FAFAFA] py-20 md:py-28 lg:py-36 overflow-hidden">
+    <section className="relative bg-[#FAFAFA] py-16 md:py-20 lg:py-28 overflow-hidden">
       {/* Gradient accent line above section */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#F97316]/50 to-transparent" />
       {/* Decorative top/bottom lines */}

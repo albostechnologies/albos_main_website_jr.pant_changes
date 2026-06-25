@@ -12,12 +12,25 @@ export const SERVICES = [
     id: "01",
     title: "Web App Development",
     slug: "web-app-development",
+    seo: {
+      metaTitle:
+        "Web App Development Company | Best Web App Developers | Albos Tech",
+      metaDescription:
+        "Web app development services by the best web app developers. We build secure, scalable web applications and android app development website solutions that drive growth.",
+      focusKeyword: "web app development",
+    },
     icon: "Globe",
     tagline: "Fast, scalable web platforms engineered for growth.",
     description:
       "High-performance web applications built with modern frameworks. From progressive web apps to complex enterprise portals, we deliver scalable solutions that drive business growth.",
     overview:
       "We design and engineer web applications that stay fast and maintainable as they scale — from customer-facing products and SaaS platforms to internal enterprise portals. Our teams own the full stack, pairing thoughtful frontend architecture with resilient backends so your product performs under real-world load.",
+    content: [
+      "In today's digital-first world, businesses need powerful, scalable, and user-friendly web applications to stay competitive. At Albos Technologies, we specialize in building high-performance web applications that help organizations streamline operations, improve customer engagement, and accelerate business growth. Our team combines modern technologies, responsive design, and agile development methodologies to deliver secure and future-ready solutions.",
+      "As one of the best web app developers, we create custom solutions tailored to your unique business requirements. Whether you need a customer portal, enterprise platform, SaaS application, eCommerce solution, or progressive web app, our developers ensure seamless functionality across all devices and browsers. Our expertise in frontend and backend technologies enables us to develop fast, reliable, and scalable applications that deliver exceptional user experiences.",
+      "We also provide comprehensive android app development website solutions, helping businesses extend their digital presence beyond the web. Our integrated approach ensures your web and mobile applications work together seamlessly, providing a consistent user experience and maximizing customer engagement. From concept and UI/UX design to development, testing, deployment, and ongoing support, we manage the entire development lifecycle.",
+      "If you're looking for a trusted partner for app making websites, Albos Technologies delivers innovative web applications designed to drive growth, improve efficiency, and support your long-term business objectives. Let us transform your ideas into powerful digital solutions that create measurable results and give your business a competitive advantage in the evolving digital landscape.",
+    ],
     capabilities: [
       "Frontend Architecture",
       "Backend Engineering",
@@ -133,12 +146,25 @@ export const SERVICES = [
     id: "02",
     title: "Mobile App Development",
     slug: "mobile-app-development",
+    seo: {
+      metaTitle:
+        "Mobile App Development Company | Best App Developers | Albos Tech",
+      metaDescription:
+        "Mobile app development services by the best app developers. We build high-performance Android and iOS apps and help businesses build your own app with no coding.",
+      focusKeyword: "mobile app development",
+    },
     icon: "Smartphone",
     tagline: "Native-quality apps for iOS and Android.",
     description:
       "Native and cross-platform mobile applications for iOS and Android. We build polished, high-performance apps that users love, from MVPs to enterprise-grade solutions.",
     overview:
       "From a first MVP to a feature-rich enterprise app, we build mobile experiences that feel native and perform reliably across devices. We handle the full lifecycle — architecture, development, store submission, and post-launch iteration — so you ship confidently and keep improving.",
+    content: [
+      "In today's mobile-driven world, businesses need innovative and user-friendly mobile applications to engage customers, improve operational efficiency, and drive growth. At Albos Technologies, we provide custom mobile app development services designed to transform your ideas into powerful digital solutions. Our experienced team develops high-performance Android and iOS applications that deliver seamless user experiences, robust functionality, and long-term scalability.",
+      "As one of the best app developers, we specialize in creating feature-rich mobile applications tailored to meet the unique needs of startups, small businesses, and enterprises. From concept validation and UI/UX design to development, testing, and deployment, we ensure every app is built with quality, security, and performance in mind. Whether you want to launch a customer-facing application or an enterprise mobility solution, our experts can help bring your vision to life.",
+      "Businesses looking to build your own app no coding can also benefit from our consultation services, where we help identify the right technology approach and development strategy for their goals. Additionally, we leverage modern tools and frameworks similar to an online android app development platform to accelerate development while maintaining flexibility and customization.",
+      "Partner with Albos Technologies to create innovative mobile applications that enhance customer engagement, strengthen your brand presence, and support sustainable business growth in today's competitive digital marketplace.",
+    ],
     capabilities: [
       "Android / Kotlin",
       "iOS / Swift",
@@ -362,12 +388,25 @@ export const SERVICES = [
     id: "04",
     title: "API & Integrations",
     slug: "api-integrations",
+    seo: {
+      metaTitle:
+        "API & Integration Services | Custom API Development | Albos Tech",
+      metaDescription:
+        "API and integration services that connect CRMs, ERPs, payment gateways and cloud platforms. We build secure, scalable custom API solutions, including DroneKit integrations.",
+      focusKeyword: "api and integration services",
+    },
     icon: "Webhook",
     tagline: "Robust APIs and seamless system integrations.",
     description:
       "Robust, scalable APIs and seamless system integrations. We design and build RESTful services, GraphQL endpoints, and microservice architectures that power modern businesses.",
     overview:
       "We design APIs and integrations that connect your systems cleanly and scale with demand. Whether you need a public REST or GraphQL API, a microservice backbone, or integrations with third-party platforms, we focus on clear contracts, observability, and reliability.",
+    content: [
+      "Modern businesses rely on multiple software platforms, cloud applications, and digital tools to operate efficiently. At Albos Technologies, we provide comprehensive API and Integration services that help organizations connect their systems, automate workflows, and improve data exchange across various platforms. Our expert developers build secure, scalable, and high-performance integrations that enhance productivity and streamline business operations.",
+      "We specialize in connecting CRMs, ERPs, payment gateways, eCommerce platforms, cloud services, mobile applications, and third-party software through custom API solutions. By enabling seamless communication between systems, businesses can eliminate manual processes, reduce errors, and gain real-time access to critical data. Our integration services are designed to support growth while ensuring reliability, security, and optimal performance.",
+      "For businesses working with advanced technologies, including IoT and unmanned systems, we also develop integrations compatible with platforms such as DroneKit, enabling efficient communication between software applications and drone-based systems. Whether you require data synchronization, cloud connectivity, automation workflows, or custom middleware solutions, our team delivers tailored integration strategies that meet your operational requirements.",
+      "At Albos Technologies, we follow industry best practices to ensure secure API development and seamless system interoperability. From planning and development to deployment and ongoing support, we help businesses create connected digital ecosystems that improve efficiency, enhance customer experiences, and drive innovation.",
+    ],
     capabilities: [
       "REST API Design",
       "GraphQL Development",
@@ -471,12 +510,25 @@ export const SERVICES = [
     id: "05",
     title: "IoT & Embedded",
     slug: "iot-embedded",
+    seo: {
+      metaTitle:
+        "IoT & API Development Services for Smart Business Solutions | Albos Tech",
+      metaDescription:
+        "IoT & API development services delivering secure device connectivity, real-time data exchange, seamless integrations and scalable solutions for business growth.",
+      focusKeyword: "iot api development services",
+    },
     icon: "Cpu",
     tagline: "Connected devices that bridge physical and digital.",
     description:
       "Connected devices and embedded systems that bridge the physical and digital worlds. From sensor networks to edge computing, we build intelligent IoT ecosystems.",
     overview:
       "We build end-to-end IoT ecosystems — from firmware on the device to the cloud platform that makes the data useful. Our teams handle sensor integration, edge processing, secure connectivity, and real-time dashboards so you can monitor and act on what your hardware sees.",
+    content: [
+      "The Internet of Things (IoT) is transforming the way businesses connect devices, collect data, and automate operations. At Albos Technologies, we provide innovative IoT and Embedded Systems development services that help organizations build intelligent, connected ecosystems for improved efficiency, productivity, and decision-making. Our solutions are designed to enable real-time monitoring, remote control, and seamless communication between devices and applications.",
+      "Our experienced engineers develop custom IoT platforms, embedded software, sensor integrations, edge computing solutions, and cloud-connected systems tailored to diverse industry requirements. Whether you need smart industrial automation, healthcare monitoring, logistics tracking, or smart home applications, we create scalable and secure IoT architectures that support long-term business growth.",
+      "We work with a wide range of IoT hardware and communication technologies, including advanced IoT routers that ensure reliable connectivity and efficient data transmission across networks. Our expertise also extends to popular development boards such as FireBeetle ESP32, enabling rapid prototyping and deployment of intelligent connected devices. By combining robust hardware integration with powerful software development, we deliver solutions that maximize performance and operational efficiency.",
+      "At Albos Technologies, we focus on innovation, security, and scalability throughout the IoT development lifecycle. From concept and device design to deployment and maintenance, we help businesses leverage connected technologies to create smarter operations, improve customer experiences, and gain a competitive advantage in the digital era.",
+    ],
     capabilities: [
       "IoT Platform Development",
       "Embedded Systems",
@@ -586,12 +638,25 @@ export const SERVICES = [
     id: "06",
     title: "Game Development",
     slug: "game-development",
+    seo: {
+      metaTitle:
+        "Game Development Company | Game Development Services | Albos Tech",
+      metaDescription:
+        "Professional game development services for mobile, web, PC and console. We build immersive games using AI in game development and industry-leading tools.",
+      focusKeyword: "game development services",
+    },
     icon: "Gamepad2",
     tagline: "Immersive games across mobile, desktop, and XR.",
     description:
       "Immersive gaming experiences across platforms. From casual mobile games to complex AR/VR simulations, we bring creative visions to life with cutting-edge game engines.",
     overview:
       "From casual mobile titles to AR/VR simulations, we turn creative concepts into polished, performant games. Our team covers gameplay engineering, multiplayer systems, and game UX, using industry-standard engines to ship experiences that look great and run smoothly.",
+    content: [
+      "The gaming industry continues to evolve rapidly, creating new opportunities for businesses, startups, and entertainment brands to engage audiences through immersive digital experiences. At Albos Technologies, we offer professional game development services that transform innovative ideas into high-quality, interactive games for multiple platforms. Our experienced developers, designers, and artists work together to create engaging gameplay, stunning visuals, and seamless performance across mobile, web, PC, and console environments.",
+      "Our game development solutions cover the entire production lifecycle, including concept design, character creation, game mechanics, UI/UX design, coding, testing, deployment, and post-launch support. Whether you're building casual games, multiplayer experiences, educational games, or enterprise gamification solutions, we deliver customized products tailored to your business goals.",
+      "We leverage advanced technologies and optimize development workflows to ensure compatibility with modern PCs for game development, enabling efficient production and high-performance gaming experiences. Our team also utilizes industry-leading tools, including popular and free game development software, to accelerate development while maintaining exceptional quality standards. Additionally, we integrate AI in game development to enhance player behavior, create intelligent NPCs, personalize gameplay experiences, and improve overall game performance.",
+      "At Albos Technologies, we focus on creativity, innovation, and technical excellence to deliver games that captivate users and drive engagement. Our goal is to help businesses launch successful gaming products that stand out in today's competitive digital entertainment market.",
+    ],
     capabilities: [
       "Unity Development",
       "Unreal Engine",
@@ -688,12 +753,25 @@ export const SERVICES = [
     id: "07",
     title: "Digital Marketing & SEO",
     slug: "digital-marketing-seo",
+    seo: {
+      metaTitle: "Digital Marketing Services Company in India | Albos Tech",
+      metaDescription:
+        "Digital marketing services helping businesses increase online visibility, generate quality leads, improve rankings and drive measurable business growth.",
+      focusKeyword: "digital marketing services",
+    },
     icon: "Megaphone",
     tagline: "Data-driven growth that compounds.",
     description:
       "Data-driven digital marketing strategies that amplify your brand and drive measurable growth. From SEO to paid campaigns, we optimize every touchpoint for conversions.",
     overview:
       "We grow your pipeline with strategies grounded in data, not guesswork. From technical SEO and content to paid campaigns across Google and Meta, we optimise the full funnel and report on the metrics that actually move revenue.",
+    content: [
+      "In today's competitive digital landscape, businesses need more than just an online presence—they need a strategic marketing approach that drives visibility, engagement, and conversions. At Albos Technologies, we provide comprehensive Digital Marketing and SEO services designed to help businesses attract qualified leads, strengthen brand awareness, and achieve sustainable growth across digital channels.",
+      "Our team develops customized marketing strategies that combine search engine optimization, content marketing, social media management, pay-per-click advertising, email campaigns, and conversion optimization. By leveraging advanced AI digital marketing technologies, we analyze customer behavior, automate marketing processes, and create highly targeted campaigns that deliver measurable results. This data-driven approach helps businesses maximize their return on investment while improving customer engagement.",
+      "We also support businesses looking to expand their brand presence through innovative solutions, including campaigns integrated with digital advertising display screens and other digital media channels. These strategies help create consistent brand messaging across both online and offline customer touchpoints.",
+      "To ensure continuous improvement, we utilize advanced digital marketing analytics tools that provide valuable insights into campaign performance, audience behavior, website traffic, and conversion trends. This enables businesses to make informed decisions and optimize their marketing efforts for maximum effectiveness.",
+      "At Albos Technologies, our goal is to help businesses build a strong digital presence, generate quality leads, and achieve long-term success through innovative marketing solutions tailored to their unique objectives.",
+    ],
     capabilities: [
       "Search Engine Optimization",
       "Google Ads Management",
@@ -800,12 +878,25 @@ export const SERVICES = [
     id: "08",
     title: "ERP & CRM Systems",
     slug: "erp-crm-systems",
+    seo: {
+      metaTitle:
+        "ERP & CRM Development Services for Business Automation | Albos Tech",
+      metaDescription:
+        "ERP and CRM development services delivering streamlined workflows, customer management, process automation and improved operational efficiency.",
+      focusKeyword: "erp crm development services",
+    },
     icon: "Building2",
     tagline: "Unify your operations and customer data.",
     description:
       "Enterprise resource planning and customer relationship management systems tailored to your workflows. We automate processes and unify data across your organization.",
     overview:
       "We implement and customise ERP and CRM systems around how your business actually works. By automating manual processes and unifying data across departments, we help teams move faster and make decisions from a single source of truth.",
+    content: [
+      "Efficient business management requires the right tools to streamline operations, improve customer relationships, and support sustainable growth. At Albos Technologies, we provide customized ERP and CRM development services that help businesses automate processes, centralize data, and enhance decision-making. Our solutions are designed to improve productivity, reduce operational costs, and deliver a seamless experience across departments.",
+      "A modern ERP system enables businesses to manage critical functions such as finance, inventory, procurement, human resources, sales, and operations from a single platform. By integrating business processes into one centralized system, organizations can gain real-time insights, improve efficiency, and make data-driven decisions faster. Our ERP solutions are scalable and tailored to meet the unique requirements of startups, SMEs, and large enterprises.",
+      "Many businesses often compare ERP vs CRM when selecting the right technology solution. While ERP focuses on streamlining internal operations and resource management, CRM is designed to enhance customer interactions, sales performance, and customer retention. At Albos Technologies, we develop integrated ERP and CRM platforms that provide the benefits of both systems in a unified solution.",
+      "Recognized among providers of the best ERP and CRM for small business, we create flexible and cost-effective ERP CRM for small business solutions that help companies manage growth efficiently. From implementation and customization to integration and support, our experts ensure your business has the technology foundation needed for long-term success.",
+    ],
     capabilities: [
       "ERP Implementation",
       "CRM Customization",
@@ -904,12 +995,25 @@ export const SERVICES = [
     id: "09",
     title: "Telecalling & Support",
     slug: "telecalling-support",
+    seo: {
+      metaTitle:
+        "Telecalling Support Services | Telecalling Outsourcing | Albos Tech",
+      metaDescription:
+        "Professional telecalling support services for inbound and outbound calls. Reliable telecalling outsourcing services with an integrated telecaller management system.",
+      focusKeyword: "telecalling support services",
+    },
     icon: "Headset",
     tagline: "Customer support that protects your brand.",
     description:
       "Professional customer support and telecalling services that keep your clients satisfied. From inbound support to outbound campaigns, we represent your brand with excellence.",
     overview:
       "We run professional inbound and outbound calling operations that represent your brand with care. From technical helpdesk to outbound campaigns, our trained agents and quality processes keep your customers satisfied and your conversion rates healthy.",
+    content: [
+      "Effective communication is essential for building strong customer relationships and driving business growth. At Albos Technologies, we provide professional Telecalling Support Services that help businesses connect with customers, generate qualified leads, improve customer satisfaction, and increase sales opportunities. Our dedicated telecalling team is trained to handle inbound and outbound calls with professionalism, ensuring a positive experience for every customer interaction.",
+      "Our services cover lead generation, appointment scheduling, customer support, follow-up calls, survey campaigns, and sales assistance. Whether you are a startup, small business, or enterprise, our telecalling solutions are designed to streamline communication processes and improve operational efficiency. Businesses seeking reliable telecalling outsourcing services can leverage our experienced team to reduce operational costs while maintaining high-quality customer engagement.",
+      "We also provide advanced solutions integrated with a telecaller management system, enabling businesses to monitor performance, track customer interactions, manage call records, and optimize team productivity. These systems help organizations improve response times, increase conversion rates, and maintain consistent service quality across all customer touchpoints.",
+      "For organizations looking to expand customer outreach or support teams, our expertise in managing telecalling job operations ensures efficient workforce management and effective communication strategies. At Albos Technologies, we combine technology, skilled professionals, and customer-focused processes to deliver telecalling services that strengthen customer relationships, enhance brand reputation, and support long-term business growth.",
+    ],
     capabilities: [
       "Customer Support",
       "Inbound Call Center",

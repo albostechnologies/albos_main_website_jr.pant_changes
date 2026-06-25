@@ -1,6 +1,9 @@
 import { getPublishedBlogPosts } from "@/data/blog-posts";
 import { getPublishedCaseStudies } from "@/data/case-studies";
 
+// Emit a static sitemap.xml during `output: export`.
+export const dynamic = "force-static";
+
 export default function sitemap() {
   const baseUrl = "https://albostechnologies.com";
   const now = new Date();

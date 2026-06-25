@@ -1,21 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",
+  // Static HTML export -> emits a fully static site into `out/`.
+  // Note: API routes (src/app/api/*) cannot run in a static export and are
+  // excluded at build time by scripts/build-static.js. The contact /
+  // newsletter / careers forms therefore require an external endpoint when
+  // deployed as a static site.
+  output: "export",
+  // Static hosts can't run the Next.js image optimizer, so serve images as-is.
+  images: { unoptimized: true },
+  // Emit each route as a folder with index.html (e.g. /blog/slug/index.html),
+  // which is the most portable layout across static hosts (Apache, nginx, S3,
+  // GitHub Pages, cPanel).
+  trailingSlash: true,
   reactStrictMode: false,
   allowedDevOrigins: ["localhost", "127.0.0.1"],
   transpilePackages: ["three", "@react-three/fiber", "@react-three/drei"],
-  // These sections live inside the single-page shell (app/page.jsx) rather than
-  // as their own route files. Rewriting them to "/" lets clean URLs like
-  // /about be deep-linked and refreshed without a 404 — the shell reads the
-  // active section from the pathname. (/services has its own route tree.)
-  async rewrites() {
-    return [
-      { source: "/about", destination: "/" },
-      { source: "/technologies", destination: "/" },
-      { source: "/industries", destination: "/" },
-      { source: "/contact", destination: "/" },
-    ];
-  },
 };
 
 export default nextConfig;

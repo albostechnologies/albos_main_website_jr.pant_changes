@@ -530,7 +530,7 @@ export function ServicesSection() {
       </div>
 
       {/* ═══ PROCESS TIMELINE ═══ */}
-      <div className="relative bg-[#FAFAFA] py-20 md:py-28 lg:py-36">
+      <div className="relative bg-[#FAFAFA] py-16 md:py-20 lg:py-28">
         <div className="absolute top-0 left-0 right-0 h-px bg-black/[0.06]" />
         <div className="absolute bottom-0 left-0 right-0 h-px bg-black/[0.06]" />
 
@@ -560,7 +560,7 @@ export function ServicesSection() {
       </div>
 
       {/* ═══ ENGAGEMENT MODELS ═══ */}
-      <div className="relative bg-[#FFFFFF] py-20 md:py-28 lg:py-36">
+      <div className="relative bg-[#FFFFFF] py-16 md:py-20 lg:py-28">
         <div className="absolute top-0 left-0 right-0 h-px bg-black/[0.06]" />
         <div className="absolute bottom-0 left-0 right-0 h-px bg-black/[0.06]" />
 
@@ -590,7 +590,7 @@ export function ServicesSection() {
       </div>
 
       {/* ═══ SERVICES COMPARISON TABLE ═══ */}
-      <div className="relative bg-[#FAFAFA] py-20 md:py-28 lg:py-36">
+      <div className="relative bg-[#FAFAFA] py-16 md:py-20 lg:py-28">
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#F97316]/30 to-transparent" />
         {/* Subtle glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-[#F97316]/[0.02] blur-[150px] pointer-events-none" />
