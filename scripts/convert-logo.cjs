@@ -2,7 +2,7 @@
  * Asset pipeline (one-off): turn the brand logo JPEG (solid white background)
  * into a trimmed, transparent-background PNG used in both the header and footer:
  *
- *   public/images/albos-logo-full.png   full colour lockup
+ *   public/images/albos-logo-real.png   full colour lockup
  *
  * `jimp` is not a project dependency. Install it ad-hoc to run this, e.g.:
  *   npm i -D jimp@0.22 && node scripts/convert-logo.cjs <src.jpeg>
@@ -16,7 +16,7 @@ const path = require('path');
 const Jimp = require('jimp');
 
 const SRC = process.argv[2] || 'C:/Users/hp/Downloads/albosLogo.jpeg';
-const OUT = path.resolve(__dirname, '..', 'public', 'images', 'albos-logo-full.png');
+const OUT = path.resolve(__dirname, '..', 'public', 'images', 'albos-logo-real.png');
 
 const minOf = (d, i) => Math.min(d[i], d[i + 1], d[i + 2]);
 

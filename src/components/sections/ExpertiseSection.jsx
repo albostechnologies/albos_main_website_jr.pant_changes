@@ -15,6 +15,35 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+/** Viewport heights of scroll per card transition (higher = slower, more time on each card). */
+const CARD_SCROLL_VH = 165;
+
+/** Fraction of each segment where the card stays fully visible before animating to the next. */
+const CARD_HOLD_RATIO = 0.62;
+
+function scrollProgressToFloatIndex(progress, lastIndex) {
+  const raw = progress * lastIndex;
+  if (raw >= lastIndex) return lastIndex;
+
+  const segment = Math.floor(raw);
+  const frac = raw - segment;
+  const holdEnd = CARD_HOLD_RATIO;
+
+  if (frac < holdEnd) return segment;
+
+  const transitionFrac = (frac - holdEnd) / (1 - holdEnd);
+  return segment + transitionFrac;
+}
+
+function cardIndexToScrollProgress(index, lastIndex) {
+  if (lastIndex === 0) return 0;
+  if (index <= 0) return 0;
+  if (index >= lastIndex) return 1;
+
+  const holdCenter = index + CARD_HOLD_RATIO * 0.45;
+  return holdCenter / lastIndex;
+}
+
 /* ─── Main Expertise Section ─── */
 export function ExpertiseSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -27,8 +56,6 @@ export function ExpertiseSection() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Keep pinning stable on mobile (ignore viewport changes from the address
-    // bar hiding/showing, which would otherwise re-trigger refreshes/jumps).
     ScrollTrigger.config({ ignoreMobileResize: true });
 
     const section = sectionRef.current;
@@ -38,11 +65,94 @@ export function ExpertiseSection() {
     const cards = cardRefs.current.filter(Boolean);
     if (cards.length === 0) return;
 
-    const ctx = gsap.context(() => {
-      /* Kill ALL existing ScrollTriggers first (clean slate) */
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+    const cardCount = cards.length;
+    const lastIndex = cardCount - 1;
 
-      /* ─── Set initial card states ─── */
+    const syncNavState = (activeIdx) => {
+      const clamped = Math.max(0, Math.min(lastIndex, activeIdx));
+      setActiveIndex(clamped);
+      if (progressFillRef.current) {
+        progressFillRef.current.style.width = `${((clamped + 1) / cardCount) * 100}%`;
+      }
+    };
+
+    const applyCardStates = (floatIndex) => {
+      cards.forEach((card, i) => {
+        if (i === 0) {
+          if (floatIndex >= 1) {
+            gsap.set(card, {
+              rotation: -25,
+              scale: 0.3,
+              opacity: 0,
+              yPercent: -10,
+              x: -60,
+            });
+          } else {
+            const p = floatIndex;
+            gsap.set(card, {
+              rotation: -25 * p,
+              scale: 1 - 0.7 * p,
+              opacity: 0.8 - p,
+              yPercent: -10 * p,
+              x: -60 * p,
+            });
+          }
+          return;
+        }
+
+        if (i === lastIndex) {
+          const p = gsap.utils.clamp(0, 1, floatIndex - (lastIndex - 1));
+          gsap.set(card, {
+            yPercent: 100 - 100 * p,
+            rotation: 0,
+            scale: 1,
+            opacity: 1,
+            x: 0,
+          });
+          return;
+        }
+
+        if (floatIndex < i) {
+          const incomingP = gsap.utils.clamp(0, 1, floatIndex - (i - 1));
+          if (floatIndex > i - 1) {
+            gsap.set(card, {
+              yPercent: 100 - 100 * incomingP,
+              rotation: 0,
+              scale: 1,
+              opacity: 1,
+              x: 0,
+            });
+          } else {
+            gsap.set(card, {
+              yPercent: 100,
+              rotation: 0,
+              scale: 1,
+              opacity: 1,
+              x: 0,
+            });
+          }
+        } else if (floatIndex >= i + 1) {
+          gsap.set(card, {
+            rotation: -25,
+            scale: 0.3,
+            opacity: 0,
+            yPercent: -10,
+            x: -60,
+          });
+        } else {
+          const p = floatIndex - i;
+          gsap.set(card, {
+            rotation: -25 * p,
+            scale: 1 - 0.7 * p,
+            opacity: 0.8 - p,
+            yPercent: -10 * p,
+            x: -60 * p,
+          });
+        }
+      });
+    };
+
+    const ctx = gsap.context(() => {
       cards.forEach((card, i) => {
         gsap.set(card, {
           position: "absolute",
@@ -50,8 +160,8 @@ export function ExpertiseSection() {
           left: 0,
           width: "100%",
           height: "100%",
-          zIndex: cards.length + 10 - i, // Card 0 highest z
-          yPercent: i === 0 ? 0 : 100, // First card visible, rest hidden below
+          zIndex: cardCount + 10 - i,
+          yPercent: i === 0 ? 0 : 100,
           scale: 1,
           rotation: 0,
           opacity: 1,
@@ -60,60 +170,25 @@ export function ExpertiseSection() {
         });
       });
 
-      /* ─── Per-card transition: card[i] animates OUT, card[i+1] animates IN ─── */
-      for (let i = 0; i < cards.length - 1; i++) {
-        const currentCard = cards[i];
-        const nextCard = cards[i + 1];
-
-        ScrollTrigger.create({
-          trigger: section,
-          start: `top+=${i * (100 / (cards.length - 1))}% top`,
-          end: `top+=${(i + 1) * (100 / (cards.length - 1))}% top`,
-          pin: false,
-          scrub: 0.5,
-          onUpdate: (self) => {
-            const progress = self.progress;
-
-            /* Current card animates OUT */
-            gsap.to(currentCard, {
-              rotation: -35 * progress,
-              scale: 1 - 0.7 * progress, // 1 → 0.3
-              opacity: 1 - progress, // 1 → 0
-              yPercent: -10 * progress, // slight upward
-              x: -60 * progress, // shift left
-              duration: 0,
-              overwrite: "auto",
-            });
-
-            /* Next card animates IN */
-            gsap.to(nextCard, {
-              yPercent: 100 - 100 * progress, // 100% → 0%
-              duration: 0,
-              overwrite: "auto",
-            });
-
-            /* Update active index + progress bar */
-            const idx = progress > 1.5 ? i + 1 : i;
-            setActiveIndex(idx);
-            if (progressFillRef.current) {
-              progressFillRef.current.style.width = `${((idx + 1) / cards.length) * 100}%`;
-            }
-          },
-        });
-      }
-
-      /* ─── Pin the section ─── */
       ScrollTrigger.create({
         trigger: section,
         start: "top top",
-        end: `+=${(cards.length - 1) * 100}vh`,
+        end: `+=${lastIndex * CARD_SCROLL_VH}vh`,
         pin: true,
         pinSpacing: true,
         anticipatePin: 1,
+        scrub: 1.25,
+        onUpdate: (self) => {
+          const floatIndex = scrollProgressToFloatIndex(
+            self.progress,
+            lastIndex,
+          );
+          applyCardStates(floatIndex);
+          syncNavState(Math.round(floatIndex));
+        },
       });
     }, section);
 
-    /* Refresh after a brief delay to recalculate positions */
     const refreshTimeout = setTimeout(() => {
       ScrollTrigger.refresh();
     }, 200);
@@ -129,11 +204,13 @@ export function ExpertiseSection() {
     const section = sectionRef.current;
     if (!section) return;
 
-    const allTriggers = ScrollTrigger.getAll();
-    const pinTrigger = allTriggers.find((t) => t.pin === section);
+    const lastIndex = SERVICES.length - 1;
+    const pinTrigger = ScrollTrigger.getAll().find(
+      (t) => t.trigger === section && t.vars.pin,
+    );
     if (!pinTrigger) return;
 
-    const targetProgress = index / (SERVICES.length - 1);
+    const targetProgress = cardIndexToScrollProgress(index, lastIndex);
     const scrollTarget =
       pinTrigger.start + (pinTrigger.end - pinTrigger.start) * targetProgress;
 
@@ -195,13 +272,13 @@ export function ExpertiseSection() {
                 viewport={{ once: true, margin: "-80px" }}
                 className="flex flex-col relative"
               >
-                <div className="absolute left-[15px] top-0 bottom-0 w-px bg-black/[0.06]" />
+                <div className="absolute left-[20px] top-0 bottom-0 w-px bg-black/[0.06]" />
                 {SERVICES.map((service, i) => (
                   <motion.button
                     key={service.id}
                     variants={fadeUp}
                     onClick={() => scrollToCard(i)}
-                    className="group relative flex items-center gap-4 rounded-xl px-3 py-3.5 text-left transition-all duration-500"
+                    className="group relative flex items-center gap-3 rounded-xl px-2 py-3 text-left transition-all duration-500"
                   >
                     <AnimatePresence>
                       {i === activeIndex && (
@@ -219,7 +296,7 @@ export function ExpertiseSection() {
                     </AnimatePresence>
                     <div
                       className={cn(
-                        "relative z-10 w-[30px] h-[30px] rounded-full flex items-center justify-center shrink-0 transition-all duration-500 border",
+                        "relative z-10 w-[25px] h-[25px] rounded-full flex items-center justify-center shrink-0 transition-all duration-500 border",
                         i === activeIndex
                           ? "bg-albos-accent border-albos-accent shadow-[0_0_20px_rgba(249,115,22,0.3)]"
                           : i < activeIndex
@@ -424,29 +501,6 @@ function ServiceCardContent({ service, isActive }) {
           {service.description}
         </p>
 
-        <div className="mt-6">
-          <div className="flex items-center gap-2 mb-2.5">
-            <MapPin className="h-3.5 w-3.5 text-albos-muted" />
-            <span className="text-xs uppercase tracking-[0.15em] text-albos-muted font-[family-name:var(--font-inter)]">
-              Offices
-            </span>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {service.locations.map((loc, j) => (
-              <span
-                key={loc}
-                className={cn(
-                  "rounded-full px-3.5 py-1.5 text-xs font-medium font-[family-name:var(--font-inter)] transition-all duration-300",
-                  j === 0
-                    ? "bg-albos-accent text-albos-dark"
-                    : "border border-black/[0.12] text-albos-text/70 hover:border-albos-accent/40 hover:text-albos-accent",
-                )}
-              >
-                {loc}
-              </span>
-            ))}
-          </div>
-        </div>
 
         <div className="mt-6">
           <span className="text-xs uppercase tracking-[0.15em] text-albos-muted font-[family-name:var(--font-inter)] mb-2.5 block">
@@ -484,7 +538,7 @@ function ServiceCardContent({ service, isActive }) {
         <div className="mt-8">
           <a
             href={`/services/${service.slug}`}
-            className="group inline-flex items-center gap-2 text-albos-accent font-[family-name:var(--font-inter)] text-sm font-semibold transition-colors duration-300 hover:text-albos-accent-hover cursor-pointer"
+            className="group flex justify-end items-center gap-2 text-albos-accent font-[family-name:var(--font-inter)] text-sm font-semibold transition-colors duration-300 hover:text-albos-accent-hover cursor-pointer"
             aria-label={`Learn more about ${service.title}`}
           >
             Learn More

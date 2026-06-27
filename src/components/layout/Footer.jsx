@@ -331,10 +331,10 @@ export function Footer({ onNavigate }) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8"
+          className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-x-10 lg:flex lg:items-start lg:gap-12"
         >
           {/* Column 1: Brand + Enhanced Newsletter */}
-          <motion.div variants={fadeUp} className="sm:col-span-2 lg:col-span-1">
+          <motion.div variants={fadeUp} className="min-w-0 sm:col-span-2 lg:flex-1">
             <button
               onClick={() => handleLinkClick("home")}
               className="inline-flex items-center group"
@@ -350,7 +350,7 @@ export function Footer({ onNavigate }) {
               />
             </button>
 
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-[#A1A1AA]">
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-[#A1A1AA]">
               Albos Technologies transforms business ideas into powerful digital
               products with creative design, reliable development, smart
               automation, and result-driven digital solutions for every stage of
@@ -431,7 +431,7 @@ export function Footer({ onNavigate }) {
           </motion.div>
 
           {/* Column 2: Services */}
-          <motion.div variants={fadeUp}>
+          <motion.div variants={fadeUp} className="min-w-0 lg:flex-1">
             <h3 className="font-[family-name:var(--font-plus-jakarta)] text-sm font-bold uppercase tracking-wider text-[#F5F4F0] mb-5">
               Services
             </h3>
@@ -454,7 +454,7 @@ export function Footer({ onNavigate }) {
           </motion.div>
 
           {/* Column 3: Company */}
-          <motion.div variants={fadeUp}>
+          <motion.div variants={fadeUp} className="min-w-0 lg:flex-1">
             <h3 className="font-[family-name:var(--font-plus-jakarta)] text-sm font-bold uppercase tracking-wider text-[#F5F4F0] mb-5">
               Company
             </h3>
@@ -474,7 +474,7 @@ export function Footer({ onNavigate }) {
           </motion.div>
 
           {/* Column 4: Contact */}
-          <motion.div variants={fadeUp}>
+          <motion.div variants={fadeUp} className="min-w-0 sm:col-span-2 lg:flex-1">
             <h3 className="font-[family-name:var(--font-plus-jakarta)] text-sm font-bold uppercase tracking-wider text-[#F5F4F0] mb-5">
               Contact
             </h3>

@@ -206,7 +206,7 @@ export function Navbar({ activePage = "home", onNavigate }) {
             aria-label="Albos Technologies Pvt Ltd - Home"
           >
             <Image
-              src="/images/albos-logo-full.png"
+              src="/images/albos-logo-real.png"
               alt="Albos Technologies Pvt Ltd"
               width={368}
               height={88}

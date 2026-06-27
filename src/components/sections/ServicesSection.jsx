@@ -19,6 +19,7 @@ import {
   Star,
 } from "lucide-react";
 import { SERVICES, PROCESS_STEPS } from "@/lib/constants";
+import { getServiceImage } from "@/data/services";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -55,18 +56,7 @@ const TECH_COLORS = {
   Storybook: "#FF4785",
 };
 
-/* ─── Service image paths ─── */
-const SERVICE_IMAGES = [
-  "/images/services/web-app-development.png",
-  "/images/services/mobile-app-development.png",
-  "/images/services/blockchain-web3.png",
-  "/images/services/api-integrations.png",
-  "/images/services/iot-embedded.png",
-  "/images/services/game-development.png",
-  "/images/services/digital-marketing-seo.png",
-  "/images/services/erp-crm-systems.jpg",
-  "/images/services/telecalling-support.jpg",
-];
+/* ─── Service image paths (from @/data/services) ─── */
 
 /* ─── Gradient overlay backgrounds for service visual panels (subtle for image visibility) ─── */
 const SERVICE_GRADIENTS = [
@@ -515,7 +505,7 @@ export function ServicesSection() {
                     className="w-full lg:w-[60%]"
                   >
                     <ParallaxPanel
-                      imageSrc={SERVICE_IMAGES[i] || SERVICE_IMAGES[0]}
+                      imageSrc={getServiceImage(service.slug)}
                       gradient={SERVICE_GRADIENTS[i] || SERVICE_GRADIENTS[0]}
                       serviceId={service.id}
                       serviceTitle={service.title}
