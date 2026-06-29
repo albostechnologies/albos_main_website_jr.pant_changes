@@ -18,6 +18,11 @@ export const SERVICES = [
       metaDescription:
         "Web app development services by the best web app developers. We build secure, scalable web applications and android app development website solutions that drive growth.",
       focusKeyword: "web app development",
+      keywords: [
+        "app making websites",
+        "best web app developers",
+        "android app development website",
+      ],
     },
     icon: "Globe",
     tagline: "Fast, scalable web platforms engineered for growth.",
@@ -151,6 +156,11 @@ export const SERVICES = [
       metaDescription:
         "Mobile app development services by the best app developers. We build high-performance Android and iOS apps and help businesses build your own app with no coding.",
       focusKeyword: "mobile app development",
+      keywords: [
+        "build your own app no coding",
+        "the best app developers",
+        "online android app development platform",
+      ],
     },
     icon: "Smartphone",
     tagline: "Native-quality apps for iOS and Android.",
@@ -278,6 +288,7 @@ export const SERVICES = [
       metaDescription:
         "Blockchain and Web3 development services — smart contracts, DeFi protocols, NFT platforms, and dApps. Secure, audited solutions by experienced blockchain developers.",
       focusKeyword: "blockchain development services",
+      keywords: ["crypto ledger", "ledger for crypto"],
     },
     icon: "Boxes",
     tagline: "Secure decentralized apps and smart contracts.",
@@ -404,6 +415,7 @@ export const SERVICES = [
       metaDescription:
         "API and integration services that connect CRMs, ERPs, payment gateways and cloud platforms. We build secure, scalable custom API solutions, including DroneKit integrations.",
       focusKeyword: "api and integration services",
+      keywords: ["DroneKit"],
     },
     icon: "Webhook",
     tagline: "Robust APIs and seamless system integrations.",
@@ -525,6 +537,7 @@ export const SERVICES = [
       metaDescription:
         "IoT & API development services delivering secure device connectivity, real-time data exchange, seamless integrations and scalable solutions for business growth.",
       focusKeyword: "iot api development services",
+      keywords: ["iot router", "firebeetle esp32"],
     },
     icon: "Cpu",
     tagline: "Connected devices that bridge physical and digital.",
@@ -652,6 +665,11 @@ export const SERVICES = [
       metaDescription:
         "Professional game development services for mobile, web, PC and console. We build immersive games using AI in game development and industry-leading tools.",
       focusKeyword: "game development services",
+      keywords: [
+        "pc for game development",
+        "free game development software",
+        "ai in game development",
+      ],
     },
     icon: "Gamepad2",
     tagline: "Immersive games across mobile, desktop, and XR.",
@@ -765,6 +783,11 @@ export const SERVICES = [
       metaDescription:
         "Digital marketing services helping businesses increase online visibility, generate quality leads, improve rankings and drive measurable business growth.",
       focusKeyword: "digital marketing services",
+      keywords: [
+        "digital advertising display screens",
+        "ai digital marketing",
+        "digital marketing analytics",
+      ],
     },
     icon: "Megaphone",
     tagline: "Data-driven growth that compounds.",
@@ -890,6 +913,12 @@ export const SERVICES = [
       metaDescription:
         "ERP and CRM development services delivering streamlined workflows, customer management, process automation and improved operational efficiency.",
       focusKeyword: "erp crm development services",
+      keywords: [
+        "erp system",
+        "erp vs crm",
+        "best erp and crm for small business",
+        "erp crm for small business",
+      ],
     },
     icon: "Building2",
     tagline: "Unify your operations and customer data.",
@@ -1006,6 +1035,11 @@ export const SERVICES = [
       metaDescription:
         "Professional telecalling support services for inbound and outbound calls. Reliable telecalling outsourcing services with an integrated telecaller management system.",
       focusKeyword: "telecalling support services",
+      keywords: [
+        "telecalling job",
+        "telecalling outsourcing",
+        "telecaller management system",
+      ],
     },
     icon: "Headset",
     tagline: "Customer support that protects your brand.",

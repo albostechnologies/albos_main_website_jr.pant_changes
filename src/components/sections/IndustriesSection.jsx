@@ -325,7 +325,7 @@ export function IndustriesSection() {
       className="relative overflow-hidden mesh-gradient-1"
     >
       {/* ═══ HERO ═══ */}
-      <div className="relative bg-[#FAFAFA] min-h-[60vh] flex flex-col justify-center px-6 md:px-12 lg:px-20 pt-32 pb-16 md:pt-40 md:pb-24">
+      <div className="relative bg-[#FAFAFA] min-h-[60vh] flex flex-col justify-center px-6 md:px-12 lg:px-20 pt-16 pb-16 md:pt-16 md:pb-24">
         {/* Subtle industry icon grid pattern */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div

@@ -212,6 +212,7 @@ export async function generateMetadata({ params }) {
     title: metaTitle,
     description: metaDescription,
     keywords: [
+      ...(seo.keywords || []),
       ...(seo.focusKeyword ? [seo.focusKeyword] : []),
       service.title,
       ...service.capabilities,

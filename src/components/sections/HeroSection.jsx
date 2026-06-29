@@ -123,14 +123,11 @@ export function HeroSection({ onNavigate }) {
               variants={fadeUp}
               className="mx-auto mt-6 md:mt-8 max-w-3xl text-base sm:text-lg md:text-xl font-[family-name:var(--font-inter)] leading-relaxed text-[#71717A] px-4"
             >
-              We build{" "}
+              We deliver{" "}
               <span className="text-[#18181B] font-medium">
                 secure, scalable, and high-performance
               </span>{" "}
-              software solutions tailored to your business goals. From startups
-              to enterprises, our expert team delivers technology that drives
-              growth, improves efficiency, and creates lasting competitive
-              advantages.
+              custom software development services for startups and enterprises. From scalable login authentication and cloud-based applications to web and mobile app development, we build reliable digital solutions that drive business growth and improve operational efficiency.
             </motion.p>
 
             {/* Stat pill */}

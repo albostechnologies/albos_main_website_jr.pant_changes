@@ -28,18 +28,22 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata = {
   metadataBase: new URL("https://albostechnologies.com"),
-  title: "Albos Technologies Pvt Ltd — Full-Stack Software Engineering",
+  title:
+    "Albos Technologies Pvt Ltd. - Custom Software, ERP & Mobile App Development Company",
   description:
-    "Albos Technologies Pvt Ltd is a full-stack software engineering company based in Pune, India. 250+ engineers, 500+ projects, 12 industries — from MVPs to complex enterprise platforms.",
+    "Custom software development company in Pune providing web development, mobile apps, ERP, CRM, AI solutions, and digital transformation services.",
   keywords: [
-    "enterprise software",
-    "web development",
-    "mobile apps",
-    "AI",
-    "cloud",
-    "DevOps",
+    "best antivirus software",
+    "scalable login",
+    "app making websites",
+    "the best app developers",
+    "crypto ledger",
+    "telecalling job",
   ],
   authors: [{ name: "Albos Technologies Pvt Ltd" }],
+  alternates: {
+    canonical: "https://albostechnologies.com",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -48,18 +52,20 @@ export const metadata = {
     ],
   },
   openGraph: {
-    title: "Albos Technologies Pvt Ltd — Custom Software, ERP & Mobile App Developement Company",
+    title:
+      "Albos Technologies Pvt Ltd. - Custom Software, ERP & Mobile App Development Company",
     description:
-      "Albos Technologies Pvt Ltd is a custom software company based in Pune, providing web development, mobile app development, ERP & CRP development, AI solution, and digital transformation services.",
+      "Custom software development company in Pune providing web development, mobile apps, ERP, CRM, AI solutions, and digital transformation services.",
     type: "website",
     url: "https://albostechnologies.com",
     siteName: "Albos Technologies Pvt Ltd",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Albos Technologies Pvt Ltd — Custom Software, ERP & Mobile App Developement Company",
+    title:
+      "Albos Technologies Pvt Ltd. - Custom Software, ERP & Mobile App Development Company",
     description:
-      "Albos Technologies Pvt Ltd is a custom software company based in Pune, providing web development, mobile app development, ERP & CRP development, AI solution, and digital transformation services.",
+      "Custom software development company in Pune providing web development, mobile apps, ERP, CRM, AI solutions, and digital transformation services.",
   },
   robots: "index, follow",
 };
@@ -103,7 +109,7 @@ export default function RootLayout({ children }) {
               url: "https://albostechnologies.com",
               logo: "https://albostechnologies.com/logo.png",
               description:
-                "Albos Technologies Pvt Ltd is a custom software company based in Pune, providing web development, mobile app development, ERP & CRP development, AI solution, and digital transformation services.",
+                "Custom software development company in Pune providing web development, mobile apps, ERP, CRM, AI solutions, and digital transformation services.",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "Kunal Plaza, Pune MH 411019",
