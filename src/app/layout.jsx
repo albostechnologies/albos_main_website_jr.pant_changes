@@ -68,6 +68,9 @@ export const metadata = {
       "Custom software development company in Pune providing web development, mobile apps, ERP, CRM, AI solutions, and digital transformation services.",
   },
   robots: "index, follow",
+  verification: {
+    google: "8SYnxgs0NQEUQA3SwwCGRjZl4OXl76BfXD8rO-Hxhaw",
+  },
 };
 
 export const viewport = {
