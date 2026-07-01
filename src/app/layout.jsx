@@ -29,16 +29,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata = {
   metadataBase: new URL("https://albostechnologies.com"),
   title:
-    "Albos Technologies Pvt Ltd. - Custom Software, ERP & Mobile App Development Company",
+    "Albos Technologies Pvt Ltd | Software Development Company",
   description:
-    "Custom software development company in Pune providing web development, mobile apps, ERP, CRM, AI solutions, and digital transformation services.",
+    "Looking for a reliable software development company? Albos Technologies delivers web development, mobile apps, ERP, CRM, digital marketing, AI, and custom software solutions.",
   keywords: [
-    "best antivirus software",
-    "scalable login",
-    "app making websites",
-    "the best app developers",
-    "crypto ledger",
-    "telecalling job",
+   
   ],
   authors: [{ name: "Albos Technologies Pvt Ltd" }],
   alternates: {
@@ -53,9 +48,9 @@ export const metadata = {
   },
   openGraph: {
     title:
-      "Albos Technologies Pvt Ltd. - Custom Software, ERP & Mobile App Development Company",
+      "Albos Technologies Pvt Ltd | Software Development Company",
     description:
-      "Custom software development company in Pune providing web development, mobile apps, ERP, CRM, AI solutions, and digital transformation services.",
+      "Looking for a reliable software development company? Albos Technologies delivers web development, mobile apps, ERP, CRM, digital marketing, AI, and custom software solutions.",
     type: "website",
     url: "https://albostechnologies.com",
     siteName: "Albos Technologies Pvt Ltd",
@@ -63,9 +58,9 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Albos Technologies Pvt Ltd. - Custom Software, ERP & Mobile App Development Company",
+      "Albos Technologies Pvt Ltd | Software Development Company",
     description:
-      "Custom software development company in Pune providing web development, mobile apps, ERP, CRM, AI solutions, and digital transformation services.",
+      "Looking for a reliable software development company? Albos Technologies delivers web development, mobile apps, ERP, CRM, digital marketing, AI, and custom software solutions.",
   },
   robots: "index, follow",
   verification: {
@@ -112,7 +107,7 @@ export default function RootLayout({ children }) {
               url: "https://albostechnologies.com",
               logo: "https://albostechnologies.com/logo.png",
               description:
-                "Custom software development company in Pune providing web development, mobile apps, ERP, CRM, AI solutions, and digital transformation services.",
+                "Looking for a reliable software development company? Albos Technologies delivers web development, mobile apps, ERP, CRM, digital marketing, AI, and custom software solutions.",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "Kunal Plaza, Pune MH 411019",
