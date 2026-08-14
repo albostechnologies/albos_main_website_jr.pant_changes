@@ -402,7 +402,7 @@ export default async function BlogDetailPage({ params }) {
                       </svg>
                     </a>
                     <a
-                      href="https://twitter.com/albostechnologies"
+                      href="https://instagram.com/albostechnologies.io"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-8 h-8 rounded-full bg-[#F5F5F0] flex items-center justify-center text-[#71717A] hover:bg-[#F97316]/10 hover:text-[#F97316] transition-all duration-300"
@@ -413,7 +413,7 @@ export default async function BlogDetailPage({ params }) {
                         fill="currentColor"
                         viewBox="0 0 24 24"
                       >
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                        <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.25-3.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z" />
                       </svg>
                     </a>
                   </div>
