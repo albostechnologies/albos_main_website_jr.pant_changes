@@ -889,12 +889,12 @@ function OpenSourceCard({ project, index }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <motion.a
-      href={project.href}
+    <motion.div
+      href={project.href && console.log(project.href)}
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "group relative flex flex-col rounded-xl border p-5 md:p-6 transition-all duration-500 cursor-pointer",
+        "group relative flex flex-col rounded-xl border p-5 md:p-6 transition-all duration-500",
         isHovered
           ? "border-[#F97316]/30 bg-[#F97316]/[0.06] shadow-[0_0_30px_rgba(249,115,22,0.08)]"
           : "border-black/[0.06] bg-black/[0.02] hover:border-black/[0.12]",
@@ -920,7 +920,7 @@ function OpenSourceCard({ project, index }) {
             {project.name}
           </h4>
         </div>
-        <ExternalLink className="h-3.5 w-3.5 text-[#A1A1AA] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        {/* <ExternalLink className="h-3.5 w-3.5 text-[#A1A1AA] opacity-0 group-hover:opacity-100 transition-opacity duration-300" /> */}
       </div>
 
       {/* Description */}
@@ -954,7 +954,7 @@ function OpenSourceCard({ project, index }) {
             "inset 0 0 0 1px rgba(249, 115, 22, 0.15), 0 0 20px rgba(249, 115, 22, 0.06)",
         }}
       />
-    </motion.a>
+    </motion.div>
   );
 }
 
@@ -1179,7 +1179,7 @@ export function TechnologiesFullSection() {
                 </p>
               </div>
               <a
-                href="https://github.com/albos"
+                href="https://github.com/albostechnologies"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group/link inline-flex items-center gap-2 text-[#F97316] font-[family-name:var(--font-inter)] text-sm font-semibold transition-colors duration-300 hover:text-[#EA580C] shrink-0"
