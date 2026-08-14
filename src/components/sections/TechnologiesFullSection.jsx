@@ -322,52 +322,6 @@ const OPEN_SOURCE_PROJECTS = [
   },
 ];
 
-/* ─── Innovation Lab Data ─── */
-const INNOVATION_LAB = [
-  {
-    title: "Quantum Computing",
-    description:
-      "Researching quantum algorithms for optimization problems, cryptography, and drug discovery simulations.",
-    icon: Atom,
-    color: "#A855F7",
-  },
-  {
-    title: "Edge AI",
-    description:
-      "Deploying lightweight ML models on edge devices for real-time inference without cloud dependency.",
-    icon: Brain,
-    color: "#22C55E",
-  },
-  {
-    title: "Web3 & Decentralization",
-    description:
-      "Exploring decentralized identity, smart contracts, and token-gated experiences for enterprise.",
-    icon: Blocks,
-    color: "#F59E0B",
-  },
-  {
-    title: "Ambient Computing",
-    description:
-      "Building invisible interfaces — voice, gesture, and context-aware systems that adapt to users.",
-    icon: Wifi,
-    color: "#3B82F6",
-  },
-  {
-    title: "Generative Design",
-    description:
-      "AI-assisted UI/UX generation that creates responsive layouts from natural language descriptions.",
-    icon: Sparkles,
-    color: "#F97316",
-  },
-  {
-    title: "Autonomous Agents",
-    description:
-      "Multi-agent systems that orchestrate complex workflows with minimal human intervention.",
-    icon: FlaskConical,
-    color: "#EF4444",
-  },
-];
-
 /* ─── Stagger Variants ─── */
 const gridContainerVariants = {
   hidden: {},
@@ -1004,55 +958,6 @@ function OpenSourceCard({ project, index }) {
   );
 }
 
-/* ─── Innovation Lab Card ─── */
-function InnovationLabCard({ item, index }) {
-  const Icon = item.icon;
-
-  return (
-    <motion.div
-      className="group relative rounded-xl p-[1px] overflow-hidden"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{
-        duration: 0.5,
-        delay: index * 0.08,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-    >
-      {/* Animated gradient border */}
-      <div
-        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{
-          background: `linear-gradient(135deg, ${item.color}40, transparent 50%, ${item.color}20)`,
-        }}
-      />
-
-      {/* Card content */}
-      <div className="relative rounded-xl bg-[#FAFAFA] border border-black/[0.06] group-hover:border-transparent p-6 md:p-7 transition-all duration-500">
-        {/* Icon */}
-        <div
-          className="w-12 h-12 rounded-xl border border-black/[0.06] flex items-center justify-center mb-4 transition-all duration-500 group-hover:scale-110 group-hover:border-transparent"
-          style={{ backgroundColor: `${item.color}10` }}
-        >
-          <Icon className="h-5 w-5" style={{ color: item.color }} />
-        </div>
-
-        <h4 className="font-[family-name:var(--font-plus-jakarta)] text-lg font-bold text-[#18181B] group-hover:text-[#F97316] transition-colors duration-300 mb-2">
-          {item.title}
-        </h4>
-        <p className="text-sm text-[#A1A1AA] font-[family-name:var(--font-inter)] leading-relaxed mb-4">
-          {item.description}
-        </p>
-        <span className="inline-flex items-center gap-1 text-[12px] font-semibold text-[#F97316] font-[family-name:var(--font-inter)] group-hover:gap-2 transition-all duration-300">
-          Explore
-          <ChevronRight className="h-3 w-3" />
-        </span>
-      </div>
-    </motion.div>
-  );
-}
-
 /* ─── Main Section ─── */
 export function TechnologiesFullSection() {
   const [activeTab, setActiveTab] = useState("web");
@@ -1314,39 +1219,6 @@ export function TechnologiesFullSection() {
         </div>
       </div>
 
-      {/* ─── Innovation Lab ─── */}
-      <div className="relative z-10 py-16 md:py-20 bg-[#FAFAFA]">
-        <div className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-black/[0.06] to-transparent" />
-        {/* Subtle grid pattern background */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-[0.025]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-          }}
-        />
-
-        <div className="mx-auto max-w-[var(--container-max)] px-6 md:px-12 lg:px-20 relative z-10">
-          <ScrollReveal direction="up" className="mb-10 md:mb-14">
-            <SectionLabel label="Innovation Lab" />
-            <h2 className="mt-4 font-[family-name:var(--font-plus-jakarta)] text-2xl md:text-3xl lg:text-4xl font-bold text-[#18181B]">
-              Future-Proofing Our Stack
-            </h2>
-            <p className="mt-2 text-[#A1A1AA] text-sm md:text-base font-[family-name:var(--font-inter)] max-w-lg">
-              Our R&amp;D team dedicates 20% of their time to exploring
-              next-generation technologies that will shape the next decade of
-              software.
-            </p>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-            {INNOVATION_LAB.map((item, i) => (
-              <InnovationLabCard key={item.title} item={item} index={i} />
-            ))}
-          </div>
-        </div>
-      </div>
 
       {/* ─── R&D Focus ─── */}
       <div className="relative z-10 py-16 md:py-20 bg-[#FAFAFA]">
