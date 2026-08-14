@@ -164,7 +164,7 @@ function JobTypeBadge({ type }) {
       className={cn(
         "inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] font-[family-name:var(--font-inter)] border",
         typeColors[type] ||
-          "bg-[#F97316]/10 text-[#F97316] border-[#F97316]/20",
+        "bg-[#F97316]/10 text-[#F97316] border-[#F97316]/20",
       )}
     >
       {type}
@@ -955,6 +955,7 @@ function EmptyState() {
 
 /* ─── Main Client Component ─── */
 export function CareersPageClient({ jobs }) {
+  console.log(jobs)
   const [activeDepartment, setActiveDepartment] = useState("All");
   const [activeJobType, setActiveJobType] = useState("All Types");
   const [expandedJobId, setExpandedJobId] = useState(null);
@@ -980,14 +981,9 @@ export function CareersPageClient({ jobs }) {
     }
   }, []);
 
+
   // Filter jobs
-  const filteredJobs = jobs.filter((job) => {
-    const deptMatch =
-      activeDepartment === "All" || job.department === activeDepartment;
-    const typeMatch =
-      activeJobType === "All Types" || job.type === activeJobType;
-    return deptMatch && typeMatch;
-  });
+  const filteredJobs = [];
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAFAFA]">
