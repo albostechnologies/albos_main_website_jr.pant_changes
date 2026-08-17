@@ -522,7 +522,7 @@ function ApplicationForm({ jobs }) {
   return (
     <div className="rounded-2xl bg-white border border-black/[0.06] p-6 md:p-8">
       {/* Application Type Toggle */}
-      <div className="mb-6">
+      {/* <div className="mb-6">
         <label className="block text-sm font-semibold text-[#18181B] font-[family-name:var(--font-plus-jakarta)] mb-3">
           I want to apply for:
         </label>
@@ -552,10 +552,10 @@ function ApplicationForm({ jobs }) {
             A custom role
           </button>
         </div>
-      </div>
+      </div> */}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Job Selection / Custom Role */}
+      {/* <form onSubmit={handleSubmit} className="space-y-4">
+        {"Job Selection / Custom Role"}
         {applicationType === "listed" ? (
           <div>
             <label
@@ -600,7 +600,7 @@ function ApplicationForm({ jobs }) {
           </div>
         )}
 
-        {/* Full Name & Email */}
+        {"Full Name & Email"}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label
@@ -638,7 +638,7 @@ function ApplicationForm({ jobs }) {
           </div>
         </div>
 
-        {/* Phone & Current Company */}
+        {"Phone & Current Company"}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label
@@ -674,7 +674,7 @@ function ApplicationForm({ jobs }) {
           </div>
         </div>
 
-        {/* Experience & LinkedIn */}
+        {"Experience & LinkedIn"}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label
@@ -715,7 +715,7 @@ function ApplicationForm({ jobs }) {
           </div>
         </div>
 
-        {/* Portfolio */}
+        {"Portfolio"}
         <div>
           <label
             htmlFor="portfolioUrl"
@@ -733,7 +733,7 @@ function ApplicationForm({ jobs }) {
           />
         </div>
 
-        {/* Resume file upload */}
+        {"Resume file upload"}
         <div>
           <label
             htmlFor="resumeFile"
@@ -792,7 +792,7 @@ function ApplicationForm({ jobs }) {
           </p>
         </div>
 
-        {/* Optional resume link */}
+        {"Optional resume link"}
         <div>
           <label
             htmlFor="resumeUrl"
@@ -810,7 +810,7 @@ function ApplicationForm({ jobs }) {
           />
         </div>
 
-        {/* Notice Period & Expected Salary */}
+        {"Notice Period & Expected Salary"}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label
@@ -851,7 +851,7 @@ function ApplicationForm({ jobs }) {
           </div>
         </div>
 
-        {/* Source */}
+        {"Source"}
         <div>
           <label
             htmlFor="source"
@@ -874,7 +874,7 @@ function ApplicationForm({ jobs }) {
           </select>
         </div>
 
-        {/* Cover Letter */}
+        {"Cover Letter"}
         <div>
           <label
             htmlFor="coverLetter"
@@ -892,7 +892,7 @@ function ApplicationForm({ jobs }) {
           />
         </div>
 
-        {/* Error Message */}
+        {"Error Message"}
         <AnimatePresence>
           {submitError && (
             <motion.div
@@ -908,7 +908,7 @@ function ApplicationForm({ jobs }) {
           )}
         </AnimatePresence>
 
-        {/* Submit Button */}
+        {"Submit Button"}
         <button
           type="submit"
           disabled={isSubmitting}
@@ -924,13 +924,13 @@ function ApplicationForm({ jobs }) {
           )}
         </button>
 
-        {/* Privacy Note */}
+        {"Privacy Note"}
         <p className="text-center text-[11px] text-[#A1A1AA] font-[family-name:var(--font-inter)] leading-relaxed">
           By submitting, you agree to our privacy policy. Your data will be used
           solely for recruitment purposes and will not be shared with third
           parties.
         </p>
-      </form>
+      </form> */}
     </div>
   );
 }
@@ -1249,7 +1249,7 @@ export function CareersPageClient({ jobs }) {
             </div>
 
             {/* Right: Form */}
-            <ApplicationForm jobs={jobs} />
+            {/* <ApplicationForm jobs={jobs} /> */}
           </div>
         </div>
       </section>

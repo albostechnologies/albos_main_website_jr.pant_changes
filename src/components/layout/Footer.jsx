@@ -5,22 +5,14 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
-  ArrowUp,
   Mail,
   MapPin,
   Phone,
-  Send,
-  Loader2,
-  Check,
-  AlertCircle,
-  Sparkles,
-  Shield,
   Zap,
   Calendar,
   FileText,
   Briefcase,
   Rocket,
-  Heart,
 } from "lucide-react";
 import {
   SERVICES,
