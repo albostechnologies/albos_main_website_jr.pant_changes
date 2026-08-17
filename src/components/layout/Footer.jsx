@@ -71,41 +71,8 @@ const QUICK_ACTIONS = [
 ];
 
 export function Footer({ onNavigate }) {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-  const [isSubscribing, setIsSubscribing] = useState(false);
-  const [subscribeError, setSubscribeError] = useState(null);
-  const [inputFocused, setInputFocused] = useState(false);
   const [quickActionsExpanded, setQuickActionsExpanded] = useState(false);
   const logosRef = useRef(null);
-
-  const handleSubscribe = async (e) => {
-    e.preventDefault();
-    if (!email.trim()) return;
-    setIsSubscribing(true);
-    setSubscribeError(null);
-    try {
-      const res = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setSubscribeError(
-          data.error || "Something went wrong. Please try again.",
-        );
-        return;
-      }
-      setSubscribed(true);
-      setEmail("");
-      setTimeout(() => setSubscribed(false), 4000);
-    } catch {
-      setSubscribeError("Network error. Please try again.");
-    } finally {
-      setIsSubscribing(false);
-    }
-  };
 
   const handleLinkClick = (page) => {
     if (onNavigate) {
@@ -356,78 +323,6 @@ export function Footer({ onNavigate }) {
               automation, and result-driven digital solutions for every stage of
               growth.
             </p>
-
-            {/* Enhanced Newsletter Card */}
-            <div className="mt-6 rounded-xl border border-white/[0.06] bg-[#0F0F0F] p-5 relative overflow-hidden">
-              {/* Subtle accent gradient bg */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#F97316]/[0.04] rounded-full blur-[60px] pointer-events-none" />
-
-              <div className="relative">
-                <div className="flex items-center gap-2 mb-2">
-                  <Sparkles className="size-4 text-[#F97316]" />
-                  <h4 className="font-[family-name:var(--font-plus-jakarta)] text-sm font-bold text-[#F5F4F0]">
-                    Stay Updated
-                  </h4>
-                </div>
-
-                {/* Email form */}
-                <form onSubmit={handleSubscribe} className="flex gap-2">
-                  <div className="relative flex-1">
-                    <Mail className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3.5 text-[#A1A1AA]" />
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => {
-                        setEmail(e.target.value);
-                        setSubscribeError(null);
-                      }}
-                      onFocus={() => setInputFocused(true)}
-                      onBlur={() => setInputFocused(false)}
-                      placeholder="your@email.com"
-                      required
-                      disabled={isSubscribing}
-                      className="h-9 w-full rounded-lg border bg-white/[0.04] pl-8 pr-3 text-[13px] text-[#F5F4F0] placeholder:text-[#A1A1AA] focus:outline-none transition-all duration-300 disabled:opacity-50"
-                      style={{
-                        borderColor: inputFocused
-                          ? "rgba(249, 115, 22, 0.5)"
-                          : "rgba(255, 255, 255, 0.08)",
-                        boxShadow: inputFocused
-                          ? "0 0 0 3px rgba(249, 115, 22, 0.1), 0 0 15px rgba(249, 115, 22, 0.05)"
-                          : "none",
-                      }}
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={isSubscribing}
-                    className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#F97316] text-white transition-all duration-300 hover:bg-[#EA580C] hover:shadow-lg hover:shadow-[#F97316]/20 disabled:opacity-50 disabled:cursor-not-allowed"
-                    aria-label="Subscribe to newsletter"
-                  >
-                    {isSubscribing ? (
-                      <Loader2 className="size-4 animate-spin" />
-                    ) : subscribed ? (
-                      <Check className="size-4" />
-                    ) : (
-                      <Send className="size-4" />
-                    )}
-                  </button>
-                </form>
-                <AnimatePresence>
-                  {subscribeError && (
-                    <motion.p
-                      initial={{ opacity: 0, y: -4 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -4 }}
-                      transition={{ duration: 0.2 }}
-                      className="mt-2 flex items-center gap-1.5 text-xs text-red-400 font-[family-name:var(--font-inter)]"
-                    >
-                      <AlertCircle className="size-3 shrink-0" />
-                      {subscribeError}
-                    </motion.p>
-                  )}
-                </AnimatePresence>
-              </div>
-            </div>
           </motion.div>
 
           {/* Column 2: Services */}
